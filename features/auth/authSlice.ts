@@ -102,7 +102,13 @@ export const authSlice = createSlice({
                     state.status = Status.FAILED
                 }
             })
-            .addCase(check.rejected, (state) => {
+            .addCase(check.rejected, (state, action) => {
+                if (action.error.message && action.error.message.includes('401')) {
+                    setAuthToken()
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('expirationDate');
+                    location.reload()
+                }
                 state.token = null
                 state.data = null
                 state.status = Status.FAILED
