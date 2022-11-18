@@ -2,10 +2,8 @@ import bcrypt from 'bcryptjs'
 import { NextApiRequest, NextApiResponse } from "next";
 
 import { message } from '../../../../../app/helpers/utils';
-
 import { User } from '../../../../../app/models';
-
-import MessageType from "../../../../../app/types/message";
+import ApiMessageType from '../../../../../app/types/api/message';
 
 import { handleError } from '../../../../../lib/utils';
 

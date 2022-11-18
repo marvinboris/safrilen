@@ -1,4 +1,4 @@
-import { AdjustmentsHorizontalIcon, ArrowDownOnSquareIcon, Cog8ToothIcon, EnvelopeIcon, EyeIcon, FlagIcon, LockClosedIcon, PencilIcon, PencilSquareIcon, UserIcon } from '@heroicons/react/24/outline'
+import { ArrowDownOnSquareIcon, Cog8ToothIcon, PencilSquareIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react'
 
@@ -12,13 +12,11 @@ import PageTitle from '../../../components/backend/ui/title/page'
 import Input from '../../../components/frontend/ui/form/input'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { selectAuth } from '../../../features/auth/authSlice'
-import Select from '../../../components/frontend/ui/form/select'
 import { useContentContext } from '../../../app/contexts/content'
 import { get, patch, selectBackend } from '../../../features/backend/backendSlice'
 import Status from '../../../app/types/enums/status'
-import ContentType from '../../../app/types/content'
 
-type ValueType = ContentType["cms"]["global"]
+type ValueType = any
 type SetValueType = (value: ValueType | ((value: ValueType) => ValueType)) => void
 
 const readURL = (input: EventTarget & HTMLInputElement, setValue: SetValueType) => {
@@ -27,7 +25,7 @@ const readURL = (input: EventTarget & HTMLInputElement, setValue: SetValueType) 
         const reader = new FileReader();
 
         reader.onload = function (e) {
-            setValue(value => ({ ...value, photo: e.target!.result as string }));
+            setValue((value: ValueType) => ({ ...value, photo: e.target!.result as string }));
         }
 
         reader.readAsDataURL(file); // convert to base64 string
@@ -63,7 +61,7 @@ const ManagerCmsGlobalPage: NextPageWithLayout = () => {
     const onChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value: val } = e.target
         if ('files' in e.target && e.target.files) readURL(e.target, setValue)
-        setValue(value => ({ ...value, [name]: ('files' in e.target && e.target.files) ? e.target.files[0] : val }))
+        setValue((value: ValueType) => ({ ...value, [name]: ('files' in e.target && e.target.files) ? e.target.files[0] : val }))
     }
 
     const submitHandler = (e: FormEvent) => {

@@ -1,5 +1,4 @@
-import { AdjustmentsHorizontalIcon, ArrowDownOnSquareIcon, Cog8ToothIcon, EnvelopeIcon, EyeIcon, FlagIcon, LockClosedIcon, PencilIcon, PencilSquareIcon, UserIcon } from '@heroicons/react/24/outline'
-import Image from 'next/image'
+import { ArrowDownOnSquareIcon, Cog8ToothIcon } from '@heroicons/react/24/outline'
 import { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react'
 
 import { NextPageWithLayout } from '../../_app'
@@ -12,7 +11,6 @@ import PageTitle from '../../../components/backend/ui/title/page'
 import Input from '../../../components/frontend/ui/form/input'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { selectAuth } from '../../../features/auth/authSlice'
-import Select from '../../../components/frontend/ui/form/select'
 import { useContentContext } from '../../../app/contexts/content'
 import { get, patch, selectBackend } from '../../../features/backend/backendSlice'
 import Status from '../../../app/types/enums/status'
@@ -30,7 +28,7 @@ const ManagerCmsGeneralPage: NextPageWithLayout = () => {
     const { role } = useAppSelector(selectAuth)
     const { status, data } = useAppSelector(selectBackend)
 
-    const [value, setValue] = useState<ValueType>(content!.cms.general)
+    const [value, setValue] = useState<any>(content!.cms.general)
 
     const [params] = useState({
         role: role!,
@@ -48,7 +46,7 @@ const ManagerCmsGeneralPage: NextPageWithLayout = () => {
     }, [data])
 
     const onChange = (e: ChangeEvent<HTMLInputElement>, ...deepness: (string | number)[]) => {
-        const valueCopy = { ...value };
+        const valueCopy: any = { ...value };
 
         if (deepness.length === 1) {
             valueCopy[deepness[0]] = e.target.value;
@@ -56,7 +54,7 @@ const ManagerCmsGeneralPage: NextPageWithLayout = () => {
         }
 
         const subValues = [];
-        let subValue = { ...value };
+        let subValue: any = { ...value };
         for (let i = 0; i < deepness.length - 1; i++) {
             const element = deepness[i];
             subValue = subValue[element];

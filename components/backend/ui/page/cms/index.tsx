@@ -32,7 +32,7 @@ console.log('mainValue', mainValue);
     </Fragment> : recursiveDeepness(mainItem as StringObject, mainName, mainId, mainValue as string | StringObject, mainDeepness, paramPrepends, paramAppends);
 });
 
-type CmsType = ContentType["cms"]["auth" | "backend" | "frontend"]
+type CmsType = any
 interface WithPagesProps {
     cmsExample: CmsType
     cmsValue: CmsType

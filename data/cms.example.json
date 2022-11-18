@@ -413,6 +413,7 @@
                 "index": "Liste des témoignages",
                 "form": {
                     "name": "Nom",
+                    "title": "Titre",
                     "body": "Contenu",
                     "photo": "Photo",
                     "testimony_photo": "Photo du témoignage",
@@ -566,13 +567,16 @@
             "contact": {
                 "title": "Contact",
                 "subtitle": "Contactez-nous",
-                "description": "Choisissez comment vous voulez entre en contact avec Safrilen.",
+                "description": "Choisissez comment vous voulez entrer en contact avec Safrilen.",
                 "contact": {
                     "head": "Pour plus d'informations",
                     "title": "Prenez contact",
                     "address": "Ndogsimbi - En Face AES Sonel Ndokotti - Face Forage UCB"
                 },
                 "form": {
+                    "head": "Formulaire de contact",
+                    "title": "N'hésitez pas",
+                    "description": "Un souci d'installation, de maintenance, au bureau, à la maison ou ailleurs ? Bénéficiez de notre expertise.",
                     "name": "Nom",
                     "email": "E-mail",
                     "subject": "Objet",

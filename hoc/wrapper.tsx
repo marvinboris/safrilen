@@ -77,7 +77,7 @@ export default function Wrapper({ children }: WrapperProps) {
       .then(content => setContent(content))
   }, [content])
 
-  return loaded && languages && content && (status === Status.LOADING ? <div className='fixed inset-0 flex items-center justify-center'>
+  return loaded && languages && content ? (status === Status.LOADING ? <div className='fixed inset-0 flex items-center justify-center'>
     <Image width={1920} height={1920} src="/images/bg-screen.svg" alt="BG Screen" className="absolute inset-0 image-cover -z-10" />
 
     <div className="w-24 h-24 rounded-full border-[7px] border-primary border-t-primary/20 animate-spin" />
@@ -111,5 +111,5 @@ export default function Wrapper({ children }: WrapperProps) {
         </ContentContext.Provider>
       </CountriesContext.Provider>
     </LanguageContext.Provider>
-  </ThemeContext.Provider>)
+  </ThemeContext.Provider>) : <></>
 }

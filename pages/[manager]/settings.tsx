@@ -20,15 +20,15 @@ const params = {
     description: "Your favorite e-commerce platform: your settings."
 }
 
-type ValueType = { [key: string]: any }
+type ValueType = any
 
-const readURL = (input: EventTarget & HTMLInputElement, value: ValueType, setValue: (value: ValueType) => void) => {
+const readURL = (input: EventTarget & HTMLInputElement, setValue: (value: ValueType | ((value: ValueType) => ValueType)) => void) => {
     if (input.files && input.files[0]) {
         const file = input.files[0];
         const reader = new FileReader();
 
         reader.onload = function (e) {
-            setValue({ ...value, photo: e.target!.result as string });
+            setValue((value: ValueType) => ({ ...value, photo: e.target!.result as string }));
         }
 
         reader.readAsDataURL(file); // convert to base64 string
@@ -47,8 +47,8 @@ const SettingsPage: NextPageWithLayout = () => {
 
     const onChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value: val } = e.target
-        if ('files' in e.target && e.target.files) readURL(e.target, value, setValue)
-        setValue({ ...value, [name]: ('files' in e.target && e.target.files) ? e.target.files[0] : val })
+        if ('files' in e.target && e.target.files) readURL(e.target, setValue)
+        setValue(value => ({ ...value, [name]: ('files' in e.target && e.target.files) ? e.target.files[0] : val }))
     }
 
     const handlePhotoChange = () => document.getElementById('photo')?.click()

@@ -44,7 +44,7 @@ export default async function handler(
             })
         });
 
-        const data = { ...user.toObject(), role: { ...user.toObject().role, features } }
+        const data: any = { ...user.toObject(), role: { ...user.toObject().role, features } }
 
         res.json({ token, expiresAt, data })
     } catch (error) {
