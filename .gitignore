@@ -30,7 +30,7 @@ access.log*
 .env*.local
 
 # cms
-cms.json
+#cms.json
 
 # vercel
 .vercel
