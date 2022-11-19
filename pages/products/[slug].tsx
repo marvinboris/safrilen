@@ -29,9 +29,7 @@ const ProductPage: NextPageWithLayout = () => {
     }, [products])
 
     const product = products && products.find(product => product.slug === slug)
-    const productsContent = products && products.filter(_product => product && (_product._id !== product._id)).map(product => <div key={`product-${product._id}`} className='flex-none w-1/2 md:w-1/3 xl:w-1/4 px-3'>
-        <ProductBlock {...product} />
-    </div>)
+    const productsContent = products && products.filter(_product => product && (_product._id !== product._id)).map(product => <ProductBlock key={`product-${product._id}`} {...product} />)
 
     return <>
         <Head link={`/products/${slug}`} title={`${product ? `${product.name} - ` : ''}${menu.products} | ${app_name}`} description={product ? product.description : cms.description} />
@@ -40,8 +38,8 @@ const ProductPage: NextPageWithLayout = () => {
 
             {product && <SectionBlock id="product">
                 <div className="container">
-                    <div className="grid grid-cols-2 gap-6">
-                        {product.photo && <div className='h-96 p-6 rounded-[30px] bg-primary/10'>
+                    <div className="grid md:grid-cols-2 gap-6">
+                        {product.photo && <div className='md:h-96 p-6 rounded-[30px] bg-primary/10'>
                             <Image width={1920} height={1920} src={product.photo} alt={product.name} className="object-contain w-full h-full" />
                         </div>}
 
@@ -62,7 +60,7 @@ const ProductPage: NextPageWithLayout = () => {
                 <div className="container">
                     <SectionTitle centered head={cms.products.head} title={cms.products.title} />
 
-                    <div className="flex flex-wrap -mx-3">
+                    <div className="grid gap-6 grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
                         {productsContent}
                     </div>
                 </div>

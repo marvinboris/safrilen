@@ -23,9 +23,7 @@ const ProductsPage: NextPageWithLayout = () => {
         if (!products) axios.get<ProductsType>('/api/frontend/products').then(res => setProducts(res.data))
     }, [products])
 
-    const productsContent = products && products.map(product => <div key={`product-${product._id}`} className='flex-none w-1/2 md:w-1/3 xl:w-1/4 px-3'>
-        <ProductBlock {...product} />
-    </div>)
+    const productsContent = products && products.map(product => <ProductBlock key={`product-${product._id}`} {...product} />)
 
     return <>
         <Head link='/products' title={`${menu.products} | ${app_name}`} description={cms.description} />
@@ -36,7 +34,7 @@ const ProductsPage: NextPageWithLayout = () => {
                 <div className="container">
                     <SectionTitle centered head={cms.products.head} title={cms.products.title} />
 
-                    <div className="flex flex-wrap -mx-3">
+                    <div className="grid gap-6 grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
                         {productsContent}
                     </div>
                 </div>
