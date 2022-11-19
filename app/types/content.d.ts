@@ -158,7 +158,8 @@ export default interface ContentType {
                 }
             },
             messages: {
-                quote: { success: string }
+                contact: { success: string, failure: string }
+                quote: { success: string, failure: string }
             },
             pages: {
                 home: {

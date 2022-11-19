@@ -1,22 +1,29 @@
 import { ArrowRightIcon, EnvelopeIcon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/outline'
+import axios from 'axios'
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react'
 
+import { useContentContext } from '../app/contexts/content'
+import MessageType from '../app/types/message'
+import Status from '../app/types/enums/status'
+
+import Alert from '../components/frontend/ui/alert'
+import SectionBlock from '../components/frontend/ui/blocks/section'
+import Button from '../components/frontend/ui/form/button'
+import Input from '../components/frontend/ui/form/input'
+import TextArea from '../components/frontend/ui/form/text-area'
 import SocialNetworks from '../components/frontend/navigation/footer/social-networks'
 import Layout, { Head } from '../components/frontend/navigation/layout'
-import SectionBlock from '../components/frontend/ui/blocks/section'
 import PageTitle from '../components/frontend/ui/title/page'
 import SectionTitle from '../components/frontend/ui/title/section'
 
-import { useContentContext } from '../app/contexts/content'
-
 import { NextPageWithLayout } from './_app'
-import Input from '../components/frontend/ui/form/input'
-import TextArea from '../components/frontend/ui/form/text-area'
-import Button from '../components/frontend/ui/form/button'
-import axios from 'axios'
-import Alert from '../components/frontend/ui/alert'
-import MessageType from '../app/types/message'
-import Status from '../app/types/enums/status'
+
+const initialState = {
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+}
 
 const ContactPage: NextPageWithLayout = () => {
     const { content } = useContentContext()
@@ -24,13 +31,8 @@ const ContactPage: NextPageWithLayout = () => {
 
     const [status, setStatus] = useState(Status.IDLE)
     const [message, setMessage] = useState<MessageType | null>(null)
-    const [value, setValue] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-    })
-
+    const [value, setValue] = useState({ ...initialState })
+    
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         if (status === Status.LOADING) return
@@ -39,6 +41,7 @@ const ContactPage: NextPageWithLayout = () => {
             const res = await axios.post<{message: MessageType}>('/api/frontend/contact', value)
             setMessage(res.data.message)
             setStatus(Status.IDLE)
+            setValue({ ...initialState })
         } catch (error) {
             setMessage({ type: 'danger', content: (error as Error).message })
             setStatus(Status.FAILED)
@@ -116,7 +119,7 @@ const ContactPage: NextPageWithLayout = () => {
 
                         <div className='mx-auto max-w-xl text-center mb-6 text-lg'>{cms.form.description}</div>
 
-                        {message && <Alert color={message.type}>{message.content}</Alert>}
+                        {message && <Alert className='mb-4' color={message.type}>{message.content}</Alert>}
 
                         <form onSubmit={handleSubmit} className='grid md:grid-cols-2 gap-4'>
                             <Input name='name' onChange={onChange} value={value.name} required placeholder={cms.form.name} />
@@ -125,7 +128,7 @@ const ContactPage: NextPageWithLayout = () => {
                             <TextArea className='md:col-span-2' name='message' onChange={onChange} value={value.message} required placeholder={cms.form.message} />
 
                             <div className='col-span-2 pt-5 text-center'>
-                                <Button icon={status === Status.LOADING ? undefined : ArrowRightIcon}>{status === Status.LOADING ? <div className='w-8 h-8 rounded-full border border-t-transparent border-white animate-spin' /> : cms.form.submit}</Button>
+                                <Button icon={ArrowRightIcon} status={status}>{cms.form.submit}</Button>
                             </div>
                         </form>
                     </div>

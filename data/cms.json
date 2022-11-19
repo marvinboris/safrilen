@@ -499,7 +499,12 @@
         },
         "messages": {
             "contact": {
-                "success": "Formulaire soumis."
+                "success": "Formulaire soumis.",
+                "failure": "Echec."
+            },
+            "quote": {
+                "success": "Formulaire soumis.",
+                "failure": "Echec."
             }
         },
         "pages": {
@@ -589,7 +594,7 @@
                 "subtitle": "Nos services",
                 "description": "Tout savoir sur Safrilen: sa mission, ses objectifs ainsi que sa vision.",
                 "services": {
-                    "head":"Comment pouvons-nous vous aider",
+                    "head": "Comment pouvons-nous vous aider",
                     "title": "Tous nos services"
                 }
             }

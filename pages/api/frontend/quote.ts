@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 import { message } from "../../../app/helpers/utils";
+import { Service } from "../../../app/models";
 import ApiMessageType from "../../../app/types/api/message";
 
 import sendMail from "../../../lib/nodemailer";
@@ -12,27 +13,31 @@ export default async function handler(
 ) {
     try {
         const cms = getCms()
-        const { name, email, subject, message: _message } = req.body
+        const { first_name, last_name, email, phone, address, service, date, comment } = req.body
+        const serviceObj = await Service.findById(service)
 
         await sendMail({
             to: 'jaris.ultio.21@gmail.com',
-            subject: 'Nouveau message de contact',
+            subject: 'Nouvelle demande de devis',
             html: `
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/plus-jakarta-display.min.css" />
                 <main style="font-family: 'Plus Jakarta Display', sans-serif; color: #5A657D;">
-                    <h2>Nouveau message de contact</h2>
+                    <h2>Nouvelle demande de devis</h2>
                     <p>En voici les détails:</p>
                     <ul>
-                    <li>Nom: <strong>${name}</strong></li>
+                    <li>Nom: <strong>${first_name} ${last_name}</strong></li>
                     <li>Adresse mail: <strong>${email}</strong></li>
-                    <li>Objet: <strong>${subject}</strong></li>
-                    <li>Message: <strong>${_message}</strong></li>
+                    <li>Téléphone: <strong>237${phone}</strong></li>
+                    <li>Adresse: <strong>${address}</strong></li>
+                    <li>Service: <strong>${serviceObj ? serviceObj.title : 'N/A'}</strong></li>
+                    <li>Date: <strong>${date}</strong></li>
+                    <li>Détails: <strong>${comment}</strong></li>
                     </ul>
                 </main>
             `
         })
 
-        res.json({ message: message(cms.frontend.messages.contact.success, 'success') })
+        res.json({ message: message(cms.frontend.messages.quote.success, 'success') })
     } catch (error) {
         handleError(res, error)
     }
