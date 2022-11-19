@@ -1,5 +1,5 @@
 import { Popover, Transition } from '@headlessui/react'
-import { XMarkIcon, HomeIcon, IdentificationIcon, Bars3BottomRightIcon, PhoneIcon, WrenchIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon, HomeIcon, IdentificationIcon, Bars3BottomRightIcon, PhoneIcon, WrenchIcon, ShoppingBagIcon } from '@heroicons/react/24/outline'
 import { Fragment, ComponentProps } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -36,6 +36,7 @@ export default function Toolbar() {
         { name: menu.home, href: '/', icon: HomeIcon },
         { name: menu.about, href: '/about', icon: IdentificationIcon },
         { name: menu.services, href: '/services', icon: WrenchIcon },
+        { name: menu.products, href: '/products', icon: ShoppingBagIcon },
         { name: menu.contact, href: '/contact', icon: PhoneIcon },
     ]
 
@@ -57,6 +58,7 @@ export default function Toolbar() {
                                     <NavItem href="/" exact icon={HomeIcon}>{menu.home}</NavItem>
                                     <NavItem href="/about">{menu.about}</NavItem>
                                     <NavItem href="/services">{menu.services}</NavItem>
+                                    <NavItem href="/products">{menu.products}</NavItem>
                                     <NavItem href="/contact">{menu.contact}</NavItem>
                                 </Popover.Group>
                             </div>

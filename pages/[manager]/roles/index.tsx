@@ -2,8 +2,6 @@ import { TagIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router'
 import { ReactElement, useEffect, useState } from 'react'
 
-import { NextPageWithLayout } from '../../_app'
-
 import { useContentContext } from '../../../app/contexts/content'
 import { convertDate, updateObject } from '../../../app/helpers/utils'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -17,6 +15,8 @@ import * as utility from '../../../components/backend/ui/utils'
 
 import { selectAuth } from '../../../features/auth/authSlice'
 import { get, reset, selectBackend, _delete } from '../../../features/backend/backendSlice'
+
+import { NextPageWithLayout } from '../../_app'
 
 const ManagerRolesPage: NextPageWithLayout = () => {
     const router = useRouter()

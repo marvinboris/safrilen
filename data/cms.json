@@ -169,6 +169,11 @@
                     "add": "Ajouter un service",
                     "index": "Liste des services"
                 },
+                "products": {
+                    "title": "Produits",
+                    "add": "Ajouter un produit",
+                    "index": "Liste des produits"
+                },
                 "testimonials": {
                     "title": "Témoignages",
                     "add": "Ajouter un témoignage",
@@ -254,6 +259,12 @@
                 "created": "Service cr\u00e9\u00e9 avec succ\u00e8s.",
                 "updated": "Service modifi\u00e9 avec succ\u00e8s.",
                 "deleted": "Service supprim\u00e9 avec succ\u00e8s."
+            },
+            "products": {
+                "not_found": "Produit introuvable.",
+                "created": "Produit cr\u00e9\u00e9 avec succ\u00e8s.",
+                "updated": "Produit modifi\u00e9 avec succ\u00e8s.",
+                "deleted": "Produit supprim\u00e9 avec succ\u00e8s."
             },
             "testimonials": {
                 "not_found": "Témoignage introuvable.",
@@ -406,6 +417,22 @@
                     "created_at": "Cr\u00e9\u00e9 le"
                 }
             },
+            "products": {
+                "title": "Produits",
+                "add": "Ajouter un produit",
+                "edit": "Modifier un produit",
+                "index": "Liste des produits",
+                "form": {
+                    "name": "Nom",
+                    "description": "Description",
+                    "price": "Prix",
+                    "photo": "Photo",
+                    "product_photo": "Photo du produit",
+                    "is_active": "Statut",
+                    "select_status": "S\u00e9lectionner le statut",
+                    "created_at": "Cr\u00e9\u00e9 le"
+                }
+            },
             "testimonials": {
                 "title": "Témoignages",
                 "add": "Ajouter un témoignage",
@@ -441,6 +468,7 @@
                 "home": "Accueil",
                 "about": "A propos",
                 "services": "Nos Services",
+                "products": "Produits",
                 "contact": "Contact",
                 "quote": "Devis"
             }
@@ -454,6 +482,7 @@
                         "home": "Accueil",
                         "about": "A propos",
                         "services": "Nos Services",
+                        "products": "Produits",
                         "contact": "Contact"
                     }
                 },
@@ -565,10 +594,6 @@
                     "read_more": "En savoir plus"
                 }
             },
-            "gallery": {
-                "title": "Galerie",
-                "subtitle": "Notre galerie d'images"
-            },
             "contact": {
                 "title": "Contact",
                 "subtitle": "Contactez-nous",
@@ -592,10 +617,19 @@
             "services": {
                 "title": "Services",
                 "subtitle": "Nos services",
-                "description": "Tout savoir sur Safrilen: sa mission, ses objectifs ainsi que sa vision.",
+                "description": "Tous les services de Safrilen.",
                 "services": {
                     "head": "Comment pouvons-nous vous aider",
                     "title": "Tous nos services"
+                }
+            },
+            "products": {
+                "title": "Produits",
+                "subtitle": "Nos produits",
+                "description": "Tous les produits de Safrilen.",
+                "products": {
+                    "head": "Ce qu'il vous faut",
+                    "title": "Tous nos produits"
                 }
             }
         }

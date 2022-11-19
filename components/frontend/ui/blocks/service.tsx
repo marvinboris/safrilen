@@ -11,7 +11,7 @@ export default function ServiceBlock({ title, link, photo, white }: ServiceInter
     const { cms: { frontend: { components: { service_block } } } } = content!
 
     return <Link href={link} className={classNames("pb-5 block group w-full md:w-auto", white ? 'text-white' : '')}>
-        <div className="aspect-video relative overflow-hidden rounded-[45px] w-full">
+        <div className="aspect-video relative overflow-hidden rounded-[30px] w-full">
             {photo && <Image width={1920} height={1920} src={photo} alt={title} className="group-hover:scale-110 transition-all duration-200" />}
         </div>
 

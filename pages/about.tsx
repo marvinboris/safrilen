@@ -39,11 +39,11 @@ const AboutPage: NextPageWithLayout = () => {
                         <div>
                             <div className='relative pl-[34.79px] pr-[36.81px] pb-[38px]'>
                                 <div className="aspect-square md:aspect-[4/3] relative">
-                                    <Image fill src="/images/frontend/mh-tri-TadNRJiOHB4-unsplash.jpg" alt="Banner" className="absolute rounded-[45px] top-0 z-20 image-cover" />
+                                    <Image fill src="/images/frontend/mh-tri-TadNRJiOHB4-unsplash.jpg" alt="Banner" className="absolute rounded-[30px] top-0 z-20 image-cover" />
                                 </div>
 
                                 <div className="absolute z-0 bottom-0 left-0 rounded-[38.0488px] bg-orange/10 shadow-lg shadow-orange/10 ratio-4by3 w-2/5" />
-                                <div className="absolute z-0 top-0 right-0 rounded-[45px] bg-primary/10 shadow-lg shadow-primary/10 ratio-4by3 w-3/5" />
+                                <div className="absolute z-0 top-0 right-0 rounded-[30px] bg-primary/10 shadow-lg shadow-primary/10 ratio-4by3 w-3/5" />
                             </div>
                         </div>
 

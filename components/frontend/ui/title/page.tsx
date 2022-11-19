@@ -6,7 +6,7 @@ interface PageTitleProps {
 }
 
 export default function PageTitle({ title, subtitle }: PageTitleProps) {
-    return <div className='mb-[30px] relative z-0 py-20'>
+    return <div className='relative z-0 py-20'>
         <Image fill src='/images/frontend/sigmund-r6tyWx_Mm9g-unsplash.jpg' alt='Bannière' className='absolute inset-0 image-cover -z-20' />
         <div className='bg-grid-white/[0.05] absolute -z-10 after:absolute after:bottom-0 after:inset-0 after:bg-gradient-to-t after:from-primary/70 after:to-primary/30 after:-z-20 inset-0' />
 

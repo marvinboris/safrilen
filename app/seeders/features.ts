@@ -8,6 +8,7 @@ const features: FeatureInterface[] = [
     { name: 'Images', prefix: 'images' },
     { name: 'Features', prefix: 'features' },
     { name: 'Services', prefix: 'services' },
+    { name: 'Products', prefix: 'products' },
     { name: 'Testimonials', prefix: 'testimonials' },
 ]
 

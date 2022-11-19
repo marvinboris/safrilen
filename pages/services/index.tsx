@@ -24,7 +24,7 @@ const ServicesPage: NextPageWithLayout = () => {
         <main>
             <PageTitle title={cms.title} subtitle={cms.subtitle} />
 
-            <SectionBlock id="services" className="bg-grid-primary/[0.05] relative z-0 after:absolute after:bottom-0 after:inset-0 after:bg-gradient-to-t after:from-white after:to-transparent after:-z-10">
+            <SectionBlock id="services">
                 <div className="container">
                     <SectionTitle centered head={cms.services.head} title={cms.services.title} />
 

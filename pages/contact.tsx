@@ -121,11 +121,11 @@ const ContactPage: NextPageWithLayout = () => {
 
                         {message && <Alert className='mb-4' color={message.type}>{message.content}</Alert>}
 
-                        <form onSubmit={handleSubmit} className='grid md:grid-cols-2 gap-4'>
+                        <form onSubmit={handleSubmit} className='grid grid-cols-2 gap-4'>
                             <Input name='name' onChange={onChange} value={value.name} required placeholder={cms.form.name} />
                             <Input type='email' name='email' onChange={onChange} value={value.email} required placeholder={cms.form.email} />
-                            <Input className='md:col-span-2' name='subject' onChange={onChange} value={value.subject} required placeholder={cms.form.subject} />
-                            <TextArea className='md:col-span-2' name='message' onChange={onChange} value={value.message} required placeholder={cms.form.message} />
+                            <Input className='col-span-2' name='subject' onChange={onChange} value={value.subject} required placeholder={cms.form.subject} />
+                            <TextArea className='col-span-2' name='message' onChange={onChange} value={value.message} required placeholder={cms.form.message} />
 
                             <div className='col-span-2 pt-5 text-center'>
                                 <Button icon={ArrowRightIcon} status={status}>{cms.form.submit}</Button>

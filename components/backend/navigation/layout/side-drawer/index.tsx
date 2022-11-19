@@ -1,4 +1,4 @@
-import { AdjustmentsHorizontalIcon, ChatBubbleOvalLeftEllipsisIcon, WrenchIcon, CogIcon, ComputerDesktopIcon, DocumentDuplicateIcon, PhotoIcon, TagIcon, UserGroupIcon, UserPlusIcon, Cog8ToothIcon } from "@heroicons/react/24/outline";
+import { AdjustmentsHorizontalIcon, ChatBubbleOvalLeftEllipsisIcon, WrenchIcon, CogIcon, ComputerDesktopIcon, PhotoIcon, TagIcon, UserGroupIcon, UserPlusIcon, Cog8ToothIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { Transition } from "@headlessui/react";
 import Link from "next/link";
 import { Fragment } from "react";
@@ -9,8 +9,6 @@ import { useAppSelector, useWindowSize } from "../../../../../app/hooks";
 import ResourceType from "../../../../../app/types/resource";
 
 import { selectAuth } from "../../../../../features/auth/authSlice";
-
-import SocialNetworks from "../../../../frontend/navigation/footer/social-networks";
 
 import Logo from "../../../../ui/logo";
 
@@ -47,6 +45,7 @@ export default function SideDrawer() {
                                         features: CogIcon,
                                         images: PhotoIcon,
                                         services: WrenchIcon,
+                                        products: ShoppingBagIcon,
                                         testimonials: ChatBubbleOvalLeftEllipsisIcon,
                                     }[resource as ResourceType]} href={`/${role}/${prefix}`}>{cms.sidebar.menu[resource as ResourceType].title}</NavItem>
                                 })}

@@ -12,7 +12,7 @@ import { useContentContext } from '../../app/contexts/content'
 
 import { NextPageWithLayout } from '../_app'
 
-const ServicesPage: NextPageWithLayout = () => {
+const ServicePage: NextPageWithLayout = () => {
     const router = useRouter()
     const slug = router.query.slug as string
 
@@ -35,7 +35,7 @@ const ServicesPage: NextPageWithLayout = () => {
 
                     <div className="grid grid-cols-2 gap-6">
                         {service.photo && <div>
-                            <Image width={1920} height={1920} src={service.photo} alt={service.title} className="rounded-[45px]" />
+                            <Image width={1920} height={1920} src={service.photo} alt={service.title} className="rounded-[30px]" />
                         </div>}
 
                         <div>
@@ -58,8 +58,8 @@ const ServicesPage: NextPageWithLayout = () => {
     </>
 }
 
-ServicesPage.getLayout = function getLayout(page: ReactElement) {
+ServicePage.getLayout = function getLayout(page: ReactElement) {
     return <Layout>{page}</Layout>
 }
 
-export default ServicesPage
+export default ServicePage

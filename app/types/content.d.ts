@@ -42,6 +42,7 @@ export default interface ContentType {
                     features: { title: string, add: string, index: string }
                     testimonials: { title: string, add: string, index: string }
                     services: { title: string, add: string, index: string }
+                    products: { title: string, add: string, index: string }
                     images: { title: string, add: string, index: string }
                     cms: { title: string, global: string, general: string, auth: string, backend: string, frontend: string }
                     settings: { title: string, cms: string, language: string }
@@ -61,6 +62,7 @@ export default interface ContentType {
                 roles: { not_found: string, created: string, updated: string, deleted: string },
                 features: { not_found: string, created: string, updated: string, deleted: string },
                 services: { not_found: string, created: string, updated: string, deleted: string },
+                products: { not_found: string, created: string, updated: string, deleted: string },
                 testimonials: { not_found: string, created: string, updated: string, deleted: string },
                 images: { not_found: string, created: string, updated: string, deleted: string },
                 notifications: { not_found: string }
@@ -102,6 +104,10 @@ export default interface ContentType {
                     title: string, add: string, edit: string, index: string
                     form: { title: string, body: string, photo: string, service_photo: string, is_active: string, select_status: string, created_at: string }
                 },
+                products: {
+                    title: string, add: string, edit: string, index: string
+                    form: { name: string, description: string, price: string, photo: string, product_photo: string, is_active: string, select_status: string, created_at: string }
+                },
                 notifications: {
                     title: string, show: string, index: string
                     form: { you_have_no_notification: string }
@@ -124,13 +130,13 @@ export default interface ContentType {
             }
         }
         frontend: {
-            header: { menu: { home: string, about: string, services: string, contact: string, quote: string } },
+            header: { menu: { home: string, about: string, services: string, products: string, contact: string, quote: string } },
             footer: {
                 top: {
                     navigation: {
                         head: string
                         title: string
-                        menu: { home: string, about: string, services: string, contact: string }
+                        menu: { home: string, about: string, services: string, products: string, contact: string }
                     },
                     contact: { head: string, title: string, address: string },
                     services: { head: string, title: string }
@@ -183,6 +189,10 @@ export default interface ContentType {
                 services: {
                     title: string, subtitle: string, description: string
                     services: { head: string, title: string }
+                },
+                products: {
+                    title: string, subtitle: string, description: string
+                    products: { head: string, title: string }
                 }
             }
         }

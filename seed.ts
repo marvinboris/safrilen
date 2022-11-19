@@ -1,10 +1,11 @@
 import dotenv from 'dotenv'
 import mongoose from "mongoose";
 
-import { Feature, Image, Role, Service, Testimonial, User } from './app/models';
+import { Feature, Image, Product, Role, Service, Testimonial, User } from './app/models';
 
 import featuresSeed from "./app/seeders/features";
 import imagesSeed from './app/seeders/images';
+import productsSeed from './app/seeders/products';
 import rolesSeed from "./app/seeders/roles";
 import servicesSeed from './app/seeders/services';
 import testimonialsSeed from './app/seeders/testimonials';
@@ -32,6 +33,7 @@ const importData = async () => {
         await Image.deleteMany()
         await Role.deleteMany()
         await Service.deleteMany()
+        await Product.deleteMany()
         await User.deleteMany()
         await Testimonial.deleteMany()
 
@@ -39,6 +41,7 @@ const importData = async () => {
         await imagesSeed()
         await rolesSeed()
         await servicesSeed()
+        await productsSeed()
         await usersSeed()
         await testimonialsSeed()
 
@@ -56,6 +59,7 @@ const destroyData = async () => {
         await Image.deleteMany()
         await Role.deleteMany()
         await Service.deleteMany()
+        await Product.deleteMany()
         await User.deleteMany()
         await Testimonial.deleteMany()
 

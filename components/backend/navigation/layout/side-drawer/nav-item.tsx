@@ -23,7 +23,6 @@ export default function NavItem({ href, icon: Icon, main, children, items }: Nav
 
     const [navItemOpen, setNavItemOpen] = useState(false)
 
-
     const hideSideDrawer = () => {
         if (width !== undefined && width < 768) setOpen(false)
     }
