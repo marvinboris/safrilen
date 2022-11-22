@@ -5,6 +5,7 @@ const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenCo
 
 module.exports = {
     content: [
+        "./node_modules/flowbite-react/**/*.js",
         "./pages/**/*.{js,ts,jsx,tsx}",
         "./components/**/*.{js,ts,jsx,tsx}",
         "./features/**/*.{js,ts,jsx,tsx}",
@@ -60,5 +61,6 @@ module.exports = {
             )
         },
         require('@tailwindcss/line-clamp'),
+        require("flowbite/plugin")
     ],
 }

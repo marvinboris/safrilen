@@ -77,7 +77,7 @@ export default function Footer() {
     const { content } = useContentContext()
     const { services, cms: { global: { app_name, company_name, contact: { email, phone, social_networks } }, frontend: { footer: { top, bottom } } } } = content!
 
-    return <footer>
+    return <footer className='relative before:bg-grid-primary/[0.05] before:absolute before:-z-20 before:inset-0 after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-t after:from-white after:to-transparent'>
         <div className="py-8">
             <div className="container grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 <SectionBlock head={top.navigation.head} title={top.navigation.title}>
@@ -130,13 +130,6 @@ export default function Footer() {
             <div className="container space-y-3 lg:space-y-0 lg:flex items-center">
                 <div className='flex items-center justify-center space-x-3'>
                     <span>{new Date().getFullYear()} <span className='font-bold text-yellow'>{app_name}</span>. {bottom.all_rights} <span className='font-bold text-primary'>{company_name}</span>.</span>
-                </div>
-
-                <div className="ml-auto flex items-start justify-center space-x-10">
-                    <Facebook href={social_networks.facebook} />
-                    <Twitter href={social_networks.twitter} />
-                    <LinkedIn href={social_networks.linkedin} />
-                    <Instagram href={social_networks.instagram} />
                 </div>
             </div>
         </div>

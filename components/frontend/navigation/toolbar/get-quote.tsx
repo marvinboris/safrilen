@@ -49,7 +49,7 @@ export default function GetQuote() {
 
     const onChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => setValue({ ...value, [e.target.name]: e.target.value })
 
-    return <View action={<Button size='sm'><span className='font-medium'>{menu.quote}</span><span><BoltIcon className='ml-2 inline-block w-5 text-white/60 group-hover:text-white transition-all duration-200' /></span></Button>}>
+    return <View action={<Button size='sm'><span className='font-medium hidden md:inline'>{menu.quote}</span><span><BoltIcon className='md:ml-2 inline-block w-5 text-white/60 group-hover:text-white transition-all duration-200' /></span></Button>}>
         <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
             <div className="container">
                 <div className="font-bold text-primary text-lg md:text-3xl text-center md:text-left mb-[17px] md:mb-[5px]">{quote.title}</div>

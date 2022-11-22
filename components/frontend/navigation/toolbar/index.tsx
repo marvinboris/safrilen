@@ -44,7 +44,7 @@ export default function Toolbar() {
         <Popover className="sticky w-full top-0 z-40 bg-white/80 dark:bg-secondary-900 backdrop-filter backdrop-blur">
             {({ close }) => <>
                 <div className="container">
-                    <div className="flex items-center py-[12px] md:py-[10px]">
+                    <div className="flex items-center py-[12px] lg:py-[10px]">
                         <div className="flex justify-start">
                             <Link href="/" className='cursor-pointer'>
                                 <span className="sr-only">{app_name}</span>
@@ -52,9 +52,9 @@ export default function Toolbar() {
                             </Link>
                         </div>
 
-                        <div className='ml-auto flex items-center space-x-3 md:space-x-5'>
+                        <div className='ml-auto flex items-center space-x-3 lg:space-x-5'>
                             <div className="flex items-center">
-                                <Popover.Group as="nav" className="hidden space-x-5 lg:space-x-8 md:flex">
+                                <Popover.Group as="nav" className="hidden space-x-5 lg:space-x-8 lg:flex">
                                     <NavItem href="/" exact icon={HomeIcon}>{menu.home}</NavItem>
                                     <NavItem href="/about">{menu.about}</NavItem>
                                     <NavItem href="/services">{menu.services}</NavItem>
@@ -71,7 +71,7 @@ export default function Toolbar() {
                                 <LanguageSelect />
                             </div>
 
-                            <div className="md:hidden ml-auto">
+                            <div className="lg:hidden ml-auto">
                                 <Popover.Button className="flex h-10 items-center justify-center rounded-md p-2 text-primary bg-primary/10 -m-2 focus:outline-none">
                                     <span className="sr-only">Ouvrir le menu</span>
                                     <Bars3BottomRightIcon className="w-6" aria-hidden="true" />

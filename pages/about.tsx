@@ -24,7 +24,7 @@ const AboutPage: NextPageWithLayout = () => {
     const { content } = useContentContext()
     const { services, cms: { global: { app_name, contact }, frontend: { header: { menu }, pages: { about: cms } } } } = content!
 
-    const servicesContent = services.filter((_service, i) => i < 3).map(service => <div key={`service-${service._id}`} className='flex-none w-full md:w-1/2 xl:w-1/3 px-3'>
+    const servicesContent = services.filter((_service, i) => i < 3).map(service => <div key={`service-${service._id}`} className='flex-none w-full md:w-1/2 xl:w-1/3 px-2 md:px-3'>
         <ServiceBlock white {...service} />
     </div>)
 
@@ -62,7 +62,7 @@ const AboutPage: NextPageWithLayout = () => {
                 <div className="container">
                     <SectionTitle white centered head={cms.services.head} title={cms.services.title} />
 
-                    <div className="flex flex-nowrap md:flex-wrap overflow-auto -mx-3 mb-6">
+                    <div className="flex flex-nowrap md:flex-wrap overflow-auto -mx-7 px-5 md:px-4 mb-6">
                         {servicesContent}
                     </div>
 
@@ -72,7 +72,7 @@ const AboutPage: NextPageWithLayout = () => {
                 </div>
             </SectionBlock>
 
-            <SectionBlock id="contact" className='bg-grid-primary/[0.05] relative z-0 after:absolute after:bottom-0 after:inset-0 after:bg-gradient-to-t after:from-white after:to-transparent after:-z-10'>
+            <SectionBlock id="contact">
                 <div className="container">
                     <div className="grid md:grid-cols-2 gap-6">
                         <div className="order-2 md:order-1 mt-[31px] md:mt-0 pb-[49px] md:pb-0">

@@ -1,6 +1,7 @@
 import { ArrowRightIcon, EnvelopeIcon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import { CheckIcon } from '@heroicons/react/20/solid'
 import axios from 'axios'
+import { Carousel } from 'flowbite-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ComponentProps, ReactElement, useEffect, useState } from 'react'
@@ -19,6 +20,7 @@ import { ImageInterface } from '../app/models/image'
 import { TestimonialInterface } from '../app/models/testimonial'
 
 import { NextPageWithLayout } from './_app'
+import { useWindowSize } from '../app/hooks'
 
 type HomeDataType = { images: ImageInterface[], testimonials: TestimonialInterface[] }
 
@@ -28,12 +30,21 @@ const Li = (props: ComponentProps<'li'>) => <li className='flex' {...props}>
 
 const HomePage: NextPageWithLayout = () => {
   const { content } = useContentContext()
+  const { width } = useWindowSize()
   const { services, cms: { global: { app_name, contact }, frontend: { pages: { home: cms } } } } = content!
 
   const [home, setHome] = useState<HomeDataType | null>(null)
 
-  const servicesContent = services.filter((_service, i) => i < 3).map(service => <div key={`service-${service._id}`} className='flex-none w-full md:w-1/2 xl:w-1/3 px-3'>
+  const servicesContent = services.filter((_service, i) => i < 3).map(service => <div key={`service-${service._id}`} className='flex-none w-full md:w-1/2 xl:w-1/3 px-2 md:px-3'>
     <ServiceBlock {...service} />
+  </div>)
+
+  const carouselContent = [
+    '/images/frontend/danilo-alvesd-AzqJSCPkZkI-unsplash.jpg',
+    '/images/gallery/thomas-kelley-xVptEZzgVfo-unsplash.jpg',
+    '/images/gallery/hobi-industri-NLBJ2I0lNr4-unsplash.jpg',
+  ].map(src => <div key={`carousel-item-${src}`} className='before:absolute before:inset-0 before:bg-grid-white/[0.05] before:z-20 after:absolute after:inset-0 after:bg-gradient-to-t after:from-primary/70 after:to-primary/30 after:z-10 w-full h-full'>
+    <Image width={1920} height={1920} src={src} alt='Bannière' className='image-cover' />
   </div>)
 
   useEffect(() => {
@@ -56,8 +67,13 @@ const HomePage: NextPageWithLayout = () => {
     <Head link='/' title={app_name} description={cms.about.description} />
     <main>
       <header className='py-40 lg:py-52 relative flex flex-col items-center justify-center text-center text-white z-0'>
-        <Image fill src='/images/frontend/danilo-alvesd-AzqJSCPkZkI-unsplash.jpg' alt='Bannière' className='absolute inset-0 image-cover -z-20' />
-        <div className='bg-grid-primary/[0.05] absolute -z-10 after:absolute after:bottom-0 after:inset-0 after:bg-gradient-to-t after:from-primary/70 after:to-primary/30 after:-z-20 inset-0' />
+        <div className='absolute inset-0 -z-20'>
+          <Carousel
+            leftControl={width !== undefined && width > 768 ? undefined : <></>}
+            rightControl={width !== undefined && width > 768 ? undefined : <></>}>
+            {carouselContent}
+          </Carousel>
+        </div>
 
         <div className="container">
           <h1 className='mx-auto max-w-4xl font-display text-5xl font-extrabold tracking-tight sm:text-7xl'>{cms.banner.title}</h1>
@@ -82,9 +98,9 @@ const HomePage: NextPageWithLayout = () => {
             </div>
 
             <div>
-              <div className='relative pl-[34.79px] pr-[36.81px] pb-[38px]'>
+              <div className='relative md:pl-[34.79px] md:pr-[36.81px] md:pb-[38px]'>
                 <div className="aspect-square md:aspect-[4/3] relative">
-                  <Image fill src="/images/frontend/mh-tri-TadNRJiOHB4-unsplash.jpg" alt="Banner" className="absolute rounded-[30px] top-0 z-20 image-cover" />
+                  <Image fill src="/images/frontend/african-american-technician-checks-maintenance-solar-panels-group-three-black-engineers-meeting-solar-station_627829-4822.jpg" alt="Banner" className="absolute rounded-[30px] top-0 z-20 image-cover" />
                 </div>
 
                 <div className="absolute z-0 bottom-0 left-0 rounded-[38.0488px] bg-orange/10 shadow-lg shadow-orange/10 ratio-4by3 w-2/5" />
@@ -103,7 +119,7 @@ const HomePage: NextPageWithLayout = () => {
         <div className="container">
           <SectionTitle centered head={cms.services.head} title={cms.services.title} />
 
-          <div className="flex flex-nowrap md:flex-wrap overflow-auto -mx-3 mb-6">
+          <div className="flex flex-nowrap md:flex-wrap overflow-auto -mx-7 px-5 md:px-4 mb-6">
             {servicesContent}
           </div>
 
@@ -125,7 +141,7 @@ const HomePage: NextPageWithLayout = () => {
             </div>
 
             <div className="order-2 lg:order-1 mt-16 lg:mt-0 lg:w-6/12 xl:w-7/12 lg:px-3">
-              <div className="grid grid-cols-3 sm:grid-cols-4 gap-6">
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 md:gap-6">
                 {galleryContent}
               </div>
             </div>
