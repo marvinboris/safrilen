@@ -40,6 +40,7 @@ export default function SideDrawer() {
                                     const resource = prefix.split('-').join('_')
 
                                     return <NavItem key={JSON.stringify(cms.sidebar.menu[resource as ResourceType])} icon={{
+                                        admins: UserGroupIcon,
                                         users: UserGroupIcon,
                                         roles: TagIcon,
                                         features: CogIcon,

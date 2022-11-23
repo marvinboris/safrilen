@@ -3,7 +3,6 @@ import { NextApiRequest, NextApiResponse, PageConfig } from "next";
 
 import { data, resource, resourceConfig } from '.';
 
-import { message } from '../../../../../app/helpers/utils';
 import { Admin } from '../../../../../app/models';
 
 import { getCms, handleError, methodNotAllowed } from "../../../../../lib/utils";
@@ -32,12 +31,11 @@ export default async function handler(
 
         if (req.method === 'GET') {
             if (slug[0] === 'info') return manage.info()
-            else {
-                const admin = await Admin.findById(slug[0]).select('-password')
-                if (!admin) return res.json({ message: message(cms.backend.messages.admins.not_found, 'danger') })
-
-                return res.json({ admin: admin.toObject(), ...(await information()) })
-            }
+            else return manage.show({
+                keys: {
+                    password: () => ''
+                }
+            })
         } else if (req.method === 'PATCH') return manage.patch({
             fields: {
                 phone: fields => fields.phone,
