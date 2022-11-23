@@ -2,9 +2,15 @@ import { ArrowRightIcon, EnvelopeIcon, MapPinIcon, PhoneIcon } from '@heroicons/
 import { CheckIcon } from '@heroicons/react/20/solid'
 import axios from 'axios'
 import { Carousel } from 'flowbite-react'
-import Image from 'next/image'
+import NextImage from 'next/image'
 import Link from 'next/link'
 import { ComponentProps, ReactElement, useEffect, useState } from 'react'
+
+import { useContentContext } from '../app/contexts/content'
+import { useWindowSize } from '../app/hooks'
+import { Image, Testimonial } from '../app/models'
+import { ImageInterface } from '../app/models/image'
+import { TestimonialInterface } from '../app/models/testimonial'
 
 import SocialNetworks from '../components/frontend/navigation/footer/social-networks'
 import Layout, { Head } from '../components/frontend/navigation/layout'
@@ -15,12 +21,7 @@ import TestimonialBlock from '../components/frontend/ui/blocks/testimonial'
 import Button from '../components/frontend/ui/form/button'
 import SectionTitle from '../components/frontend/ui/title/section'
 
-import { useContentContext } from '../app/contexts/content'
-import { ImageInterface } from '../app/models/image'
-import { TestimonialInterface } from '../app/models/testimonial'
-
 import { NextPageWithLayout } from './_app'
-import { useWindowSize } from '../app/hooks'
 
 type HomeDataType = { images: ImageInterface[], testimonials: TestimonialInterface[] }
 
@@ -28,12 +29,11 @@ const Li = (props: ComponentProps<'li'>) => <li className='flex' {...props}>
   <CheckIcon className='w-4 mr-2 text-primary' />{props.children}
 </li>
 
-const HomePage: NextPageWithLayout = () => {
-  const { content } = useContentContext()
+const HomePage: NextPageWithLayout<{ home: HomeDataType }> = ({ home }) => {
   const { width } = useWindowSize()
-  const { services, cms: { global: { app_name, contact }, frontend: { pages: { home: cms } } } } = content!
 
-  const [home, setHome] = useState<HomeDataType | null>(null)
+  const { content } = useContentContext()
+  const { services, cms: { global: { app_name, contact }, frontend: { pages: { home: cms } } } } = content!
 
   const servicesContent = services.filter((_service, i) => i < 3).map(service => <div key={`service-${service._id}`} className='flex-none w-full md:w-1/2 xl:w-1/3 px-2 md:px-3'>
     <ServiceBlock {...service} />
@@ -44,17 +44,14 @@ const HomePage: NextPageWithLayout = () => {
     '/images/gallery/thomas-kelley-xVptEZzgVfo-unsplash.jpg',
     '/images/gallery/hobi-industri-NLBJ2I0lNr4-unsplash.jpg',
   ].map(src => <div key={`carousel-item-${src}`} className='before:absolute before:inset-0 before:bg-grid-white/[0.05] before:z-20 after:absolute after:inset-0 after:bg-gradient-to-t after:from-primary/70 after:to-primary/30 after:z-10 w-full h-full'>
-    <Image width={1920} height={1920} src={src} alt='Bannière' className='image-cover' />
+    <NextImage width={1920} height={1920} src={src} alt='Bannière' className='image-cover' />
   </div>)
 
-  useEffect(() => {
-    if (!home) axios.get<HomeDataType>('/api/frontend/home').then(res => setHome(res.data))
-  }, [home])
-  const galleryContent = (home ? home.images : []).map((image: ImageInterface, index: number) => <ImageBlock key={`image-${image.photo}-${index}`} {...image} />)
+  const galleryContent = home.images.map((image: ImageInterface, index: number) => <ImageBlock key={`image-${image.photo}-${index}`} {...image} />)
 
   const testimoniesContent = []
   const renderTestimony = (testimony: TestimonialInterface, index: number) => <TestimonialBlock key={`testimony-${testimony.body}-${index}`} {...testimony} />
-  if (home) for (let i = 0; i < Math.ceil(home.testimonials.length / 2); i++) {
+  for (let i = 0; i < Math.ceil(home.testimonials.length / 2); i++) {
     testimoniesContent.push(<li key={`testimoniesContent-${i}`}>
       <ul role="list" className="flex flex-col gap-y-6 sm:gap-y-8">
         {renderTestimony(home.testimonials[2 * i], 2 * i)}
@@ -100,7 +97,7 @@ const HomePage: NextPageWithLayout = () => {
             <div>
               <div className='relative md:pl-[34.79px] md:pr-[36.81px] md:pb-[38px]'>
                 <div className="aspect-square md:aspect-[4/3] relative">
-                  <Image fill src="/images/frontend/african-american-technician-checks-maintenance-solar-panels-group-three-black-engineers-meeting-solar-station_627829-4822.jpg" alt="Banner" className="absolute rounded-[30px] top-0 z-20 image-cover" />
+                  <NextImage fill src="/images/frontend/african-american-technician-checks-maintenance-solar-panels-group-three-black-engineers-meeting-solar-station_627829-4822.jpg" alt="Banner" className="absolute rounded-[30px] top-0 z-20 image-cover" />
                 </div>
 
                 <div className="absolute z-0 bottom-0 left-0 rounded-[38.0488px] bg-orange/10 shadow-lg shadow-orange/10 ratio-4by3 w-2/5" />
@@ -208,6 +205,18 @@ const HomePage: NextPageWithLayout = () => {
 
 HomePage.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>
+}
+
+export async function getServerSideProps() {
+  const images = await Image.find().limit(12)
+  const testimonials = await Testimonial.find().limit(3)
+
+  const home = JSON.parse(JSON.stringify({
+    images: images.map(image => image.toObject()),
+    testimonials: testimonials.map(testimonial => testimonial.toObject()),
+  }))
+
+  return { props: { home } }
 }
 
 export default HomePage

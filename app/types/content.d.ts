@@ -177,7 +177,10 @@ export default interface ContentType {
                 },
                 about: {
                     title: string, subtitle: string, description: string
-                    about: { head: string, title: string, description: string, services: string[], read_more: string },
+                    about: {
+                        head: string, title: string, description: string,
+                        strengths: { title: string, items: string[] }, goal: { title: string, items: string[] }, follow: { title: string, body: string }
+                    },
                     services: { head: string, title: string, view_all: string },
                     contact: { head: string, title: string, address: string }
                 },

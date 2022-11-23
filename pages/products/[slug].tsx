@@ -1,7 +1,10 @@
-import axios from 'axios'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { ReactElement, useEffect, useState } from 'react'
+import { ReactElement } from 'react'
+
+import { useContentContext } from '../../app/contexts/content'
+import { Product } from '../../app/models'
+import { ProductInterface } from '../../app/models/product'
 
 import Layout, { Head } from '../../components/frontend/navigation/layout'
 import SectionBlock from '../../components/frontend/ui/blocks/section'
@@ -9,27 +12,19 @@ import ProductBlock from '../../components/frontend/ui/blocks/product'
 import PageTitle from '../../components/frontend/ui/title/page'
 import SectionTitle from '../../components/frontend/ui/title/section'
 
-import { useContentContext } from '../../app/contexts/content'
-import { ProductInterface } from '../../app/models/product'
-
 import { NextPageWithLayout } from '../_app'
 
 type ProductsType = (ProductInterface & { _id: string, link: string })[]
 
-const ProductPage: NextPageWithLayout = () => {
+const ProductPage: NextPageWithLayout<{ products: ProductsType }> = ({ products }) => {
     const router = useRouter()
     const slug = router.query.slug as string
 
     const { content } = useContentContext()
     const { cms: { global: { app_name }, frontend: { header: { menu }, pages: { products: cms } } } } = content!
 
-    const [products, setProducts] = useState<ProductsType | null>(null)
-    useEffect(() => {
-        if (!products) axios.get<ProductsType>('/api/frontend/products').then(res => setProducts(res.data))
-    }, [products])
-
-    const product = products && products.find(product => product.slug === slug)
-    const productsContent = products && products.filter(_product => product && (_product._id !== product._id)).map(product => <ProductBlock key={`product-${product._id}`} {...product} />)
+    const product = products.find(product => product.slug === slug)
+    const productsContent = products.filter(_product => product && (_product._id !== product._id)).map(product => <ProductBlock key={`product-${product._id}`} {...product} />)
 
     return <>
         <Head link={`/products/${slug}`} title={`${product ? `${product.name} - ` : ''}${menu.products} | ${app_name}`} description={product ? product.description : cms.description} />
@@ -71,6 +66,12 @@ const ProductPage: NextPageWithLayout = () => {
 
 ProductPage.getLayout = function getLayout(page: ReactElement) {
     return <Layout>{page}</Layout>
+}
+
+export async function getServerSideProps() {
+    const products = await Product.find()
+
+    return { props: { products: JSON.parse(JSON.stringify(products.map(product => product.toObject()))) } }
 }
 
 export default ProductPage

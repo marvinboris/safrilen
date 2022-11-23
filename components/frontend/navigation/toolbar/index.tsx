@@ -33,10 +33,9 @@ export default function Toolbar() {
     const { cms: { global: { app_name }, frontend: { header: { menu } } } } = content!
 
     const mobileNavItems = [
-        { name: menu.home, href: '/', icon: HomeIcon },
         { name: menu.about, href: '/about', icon: IdentificationIcon },
-        { name: menu.services, href: '/services', icon: WrenchIcon },
         { name: menu.products, href: '/products', icon: ShoppingBagIcon },
+        { name: menu.services, href: '/services', icon: WrenchIcon },
         { name: menu.contact, href: '/contact', icon: PhoneIcon },
     ]
 
@@ -55,10 +54,9 @@ export default function Toolbar() {
                         <div className='ml-auto flex items-center space-x-3 lg:space-x-5'>
                             <div className="flex items-center">
                                 <Popover.Group as="nav" className="hidden space-x-5 lg:space-x-8 lg:flex">
-                                    <NavItem href="/" exact icon={HomeIcon}>{menu.home}</NavItem>
                                     <NavItem href="/about">{menu.about}</NavItem>
-                                    <NavItem href="/services">{menu.services}</NavItem>
                                     <NavItem href="/products">{menu.products}</NavItem>
+                                    <NavItem href="/services">{menu.services}</NavItem>
                                     <NavItem href="/contact">{menu.contact}</NavItem>
                                 </Popover.Group>
                             </div>

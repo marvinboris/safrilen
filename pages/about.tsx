@@ -20,6 +20,14 @@ const Li = (props: ComponentProps<'li'>) => <li className='flex' {...props}>
     <CheckIcon className='w-4 mr-2 text-primary' />{props.children}
 </li>
 
+const Article = (props: ComponentProps<'article'> & { title: string }) => <article {...props}>
+    <div className="mb-1 text-primary font-semibold">{props.title}</div>
+
+    <div>
+        {props.children}
+    </div>
+</article>
+
 const AboutPage: NextPageWithLayout = () => {
     const { content } = useContentContext()
     const { services, cms: { global: { app_name, contact }, frontend: { header: { menu }, pages: { about: cms } } } } = content!
@@ -35,11 +43,11 @@ const AboutPage: NextPageWithLayout = () => {
 
             <SectionBlock id='about' className="flex items-center">
                 <div className='container'>
-                    <div className='grid md:gap-12 md:grid-cols-2'>
+                    <div className='grid gap-6 md:grid-cols-3'>
                         <div>
-                            <div className='relative pl-[34.79px] pr-[36.81px] pb-[38px]'>
-                                <div className="aspect-square md:aspect-[4/3] relative">
-                                    <Image fill src="/images/frontend/mh-tri-TadNRJiOHB4-unsplash.jpg" alt="Banner" className="absolute rounded-[30px] top-0 z-20 image-cover" />
+                            <div className='relative md:px-8 md:pb-9'>
+                                <div className="aspect-square relative">
+                                    <Image fill src="/images/frontend/Nigerian-engineers.jpg" alt="Banner" className="absolute rounded-[30px] top-0 z-20 image-cover" />
                                 </div>
 
                                 <div className="absolute z-0 bottom-0 left-0 rounded-[38.0488px] bg-orange/10 shadow-lg shadow-orange/10 ratio-4by3 w-2/5" />
@@ -47,12 +55,28 @@ const AboutPage: NextPageWithLayout = () => {
                             </div>
                         </div>
 
-                        <div>
+                        <div className='md:col-span-2'>
                             <SectionTitle head={cms.about.head} title={cms.about.title} />
 
-                            <div className="mb-5">{cms.about.description}</div>
+                            <div className='grid gap-6 md:grid-cols-2'>
+                                <div className='space-y-6'>
+                                    <div>{cms.about.description}</div>
 
-                            <ul className='mb-6 md:mb-14'>{cms.about.services.map((service, i) => <Li key={`about-about-service-${i}`}>{service}</Li>)}</ul>
+                                    <Article title={cms.about.strengths.title}>
+                                        <ul>{cms.about.strengths.items.map((strength, i) => <Li key={`about-about-strength-${i}`}>{strength}</Li>)}</ul>
+                                    </Article>
+                                </div>
+
+                                <div className='space-y-6'>
+                                    <Article title={cms.about.goal.title}>
+                                        <ul>{cms.about.goal.items.map((goal, i) => <Li key={`about-about-goal-${i}`}>{goal}</Li>)}</ul>
+                                    </Article>
+
+                                    <Article title={cms.about.follow.title}>
+                                        {cms.about.follow.body}
+                                    </Article>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

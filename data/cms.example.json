@@ -465,9 +465,8 @@
     "frontend": {
         "header": {
             "menu": {
-                "home": "Accueil",
-                "about": "A propos",
-                "services": "Nos Services",
+                "about": "Société",
+                "services": "Services",
                 "products": "Produits",
                 "contact": "Contact",
                 "quote": "Devis"
@@ -479,10 +478,9 @@
                     "head": "Safrilen",
                     "title": "Notre entreprise",
                     "menu": {
-                        "home": "Accueil",
-                        "about": "A propos",
-                        "services": "Nos Services",
+                        "about": "Société",
                         "products": "Produits",
+                        "services": "Services",
                         "contact": "Contact"
                     }
                 },
@@ -583,15 +581,28 @@
                     "view_all": "Découvrez tous nos services"
                 },
                 "about": {
-                    "head": "A propos de Safrilen",
-                    "title": "Bienvenue chez Safrilen",
+                    "head": "Qui sommes-nous?",
+                    "title": "A propos de Safrilen",
                     "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae sint hic fuga ipsam nam impedit repellendus, harum dignissimos dolore! Id accusamus sit tempore tempora dicta facilis quos nostrum atque itaque.",
-                    "services": [
-                        "Fourniture de matériel électrique",
-                        "Maintenance de matériel électrique",
-                        "Service après vente"
-                    ],
-                    "read_more": "En savoir plus"
+                    "strengths": {
+                        "title": "Nos atouts",
+                        "items": [
+                            "Un interlocuteur unique",
+                            "Un service sur-mesure",
+                            "Accompagnement et suivi technique et commercial"
+                        ]
+                    },
+                    "goal": {
+                        "title": "Notre objectif",
+                        "items": [
+                            "Optimiser votre offre énergétique",
+                            "Une équipe capable d'analyser et d'élaborer des offres sur-mesure"
+                        ]
+                    },
+                    "follow": {
+                        "title": "Notre suivi client",
+                        "body": "Dans le but d’améliorer de façon permanente nos services, nous vous ferons bénéficier de nouveaux produits, de nouvelles offres, toujours plus innovantes et plus compétitives."
+                    }
                 }
             },
             "contact": {
