@@ -118,7 +118,7 @@ export const add = {
                     props.history?.push({
                         pathname,
                         query: { ...props.backend.message }
-                    }, pathname);
+                    }, pathname).then(() => props.reset());
                 }
             }
             if (props.backend.data && props.backend.data[singular] || (props.edit && props.backend.message && props.backend.message.type === 'success')) {

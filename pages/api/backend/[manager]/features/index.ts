@@ -10,7 +10,6 @@ export const data = async (req: NextApiRequest) => {
     let total = 0
 
     const regex = new RegExp(search as string, 'i')
-    console.log(regex);
 
     const data = await Feature
         .find({
@@ -50,7 +49,11 @@ export default async function handler(
         })
 
         if (req.method === 'GET') return manage.get()
-        else if (req.method === 'POST') return manage.post()
+        else if (req.method === 'POST') return manage.post({
+            validate: {
+                name: { minLength: 3 }
+            }
+        })
         else methodNotAllowed(req, res)
     } catch (error) {
         handleError(res, error)

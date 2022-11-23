@@ -7,7 +7,6 @@ import ManagerResourceManageStateType from "../../../../../app/types/account/man
 
 import { selectBackend } from "../../../../../features/backend/backendSlice"
 
-import Alert from "../../../../frontend/ui/alert"
 import Input from "../../../../frontend/ui/form/input"
 
 import * as utility from '../../utils'
@@ -35,7 +34,6 @@ export default function ManageAddOrEditRoles({ edit }: Props) {
     const inputChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => utility.add.component.inputChangeHandler(setState)(e)
 
     return <ManagerAddOrEdit icon={CogIcon} edit={edit} resource='features' singular='feature' initialState={initialState} state={state} setState={setState}>
-        {message && <Alert className="mb-4" color={message.type}>{message.content}</Alert>}
         <div className='grid md:grid-cols-3'>
             <div className="md:col-span-2">
                 <div className="flex-1 grid gap-y-2 gap-x-4 grid-cols-1 md:grid-cols-2 overflow-auto">

@@ -161,8 +161,8 @@ export default function List({ total, get, icon: Icon, data, title, subtitle, fi
                         <div className="flex items-center divide-x-[0.5px] divide-x-secondary-300 text-sm">
                             <div className="px-3 h-[39px] flex items-center justify-center">{cms.show}</div>
 
-                            <div className="w-[59px] h-[39px] flex items-center justify-center relative">
-                                <select name="show" id="show" onChange={inputChangedHandler} value={show} className='font-bold bg-transparent outline-none border-0 p-0'>
+                            <div className="h-[39px] flex items-center justify-center relative">
+                                <select name="show" id="show" onChange={inputChangedHandler} value={show} className='text-sm font-bold bg-transparent outline-none border-0 pl-3 pr-8'>
                                     <option value="5">05</option>
                                     <option value="10">10</option>
                                     <option value="25">25</option>
@@ -201,7 +201,7 @@ export default function List({ total, get, icon: Icon, data, title, subtitle, fi
         </div>
 
         <div className="flex items-center justify-between">
-            <div>{cms.showing} {(+page < pageNumber) ? show : entries} {cms.from} {total} {total > 1 ? cms.entries.plural : cms.entries.singular}.</div>
+            <div>{cms.showing} {show === 'All' ? total : (+page < pageNumber) ? show : entries} {cms.from} {total} {total > 1 ? cms.entries.plural : cms.entries.singular}.</div>
 
             <div className="pt-2 d-flex justify-content-end">
                 {show !== "All" && <div className="inline-flex text-sm space-x-2.5 items-center p-1 rounded-3xl bg-white border border-yellow/40 relative z-0 overflow-hidden after:absolute after:inset-0 after:bg-yellow/20 after:-z-10">

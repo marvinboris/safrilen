@@ -8,7 +8,6 @@ import ManagerResourceManageStateType from "../../../../../app/types/account/man
 
 import { selectBackend } from "../../../../../features/backend/backendSlice"
 
-import Alert from "../../../../frontend/ui/alert"
 import Input from "../../../../frontend/ui/form/input"
 import Select from "../../../../frontend/ui/form/select"
 import TextArea from "../../../../frontend/ui/form/text-area"
@@ -43,7 +42,6 @@ export default function ManageAddOrEditProducts({ edit }: Props) {
     return <ManagerAddOrEdit icon={ShoppingBagIcon} edit={edit} resource='products' singular='product' initialState={initialState} state={state} setState={setState} staticChild={<>
         <input type="file" id="photo" name="photo" className="hidden" onChange={inputChangeHandler} accept=".png,.jpg,.jpeg" />
     </>}>
-        {message && <Alert color={message.type}>{message.content}</Alert>}
         <div className='grid md:grid-cols-3'>
             <div className="md:col-span-2">
                 <div className="flex-1 grid gap-y-2 gap-x-4 grid-cols-1 md:grid-cols-2 overflow-auto">

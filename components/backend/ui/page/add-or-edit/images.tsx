@@ -6,7 +6,6 @@ import { useAppSelector } from "../../../../../app/hooks"
 import ManagerResourceManageStateType from "../../../../../app/types/account/manager/add-or-edit/state"
 
 import { selectBackend } from "../../../../../features/backend/backendSlice"
-import Alert from "../../../../frontend/ui/alert"
 
 import * as utility from '../../utils'
 
@@ -31,7 +30,6 @@ export default function ManageAddOrEditImages({ edit }: Props) {
     return <ManagerAddOrEdit icon={WrenchIcon} edit={edit} resource='images' singular='image' initialState={initialState} state={state} setState={setState} staticChild={<>
         <input type="file" id="photo" name="photo" className="hidden" onChange={inputChangeHandler} accept=".png,.jpg,.jpeg" />
     </>}>
-        {message && <Alert color={message.type}>{message.content}</Alert>}
         <div className='grid md:grid-cols-3'>
             <div className='md:flex items-center justify-center'>
                 <div onClick={() => fileUpload('photo')} className="aspect-[5/2] md:w-40 md:aspect-square cursor-pointer mt-[14px] md:mt-0 rounded-[15px] md:rounded-3xl relative flex flex-col items-center justify-center overflow-hidden text-white">

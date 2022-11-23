@@ -48,7 +48,6 @@ export default function ManageAddOrEditUsers({ edit }: Props) {
     return <ManagerAddOrEdit icon={UserGroupIcon} edit={edit} resource='users' singular='user' initialState={initialState} state={state} setState={setState} staticChild={<>
         <input type="file" id="photo" name="photo" className="hidden" onChange={inputChangeHandler} accept=".png,.jpg,.jpeg" />
     </>}>
-        {message && <Alert color={message.type}>{message.content}</Alert>}
         <div className='grid md:grid-cols-3'>
             <div className="md:col-span-2">
                 <div className="flex-1 grid gap-y-2 gap-x-4 grid-cols-1 md:grid-cols-2 overflow-auto">

@@ -1,6 +1,6 @@
 import { ArrowDownOnSquareIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router'
-import { ComponentProps, ReactNode, useEffect, useState } from 'react'
+import { ComponentProps, ReactNode, useEffect, useMemo, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from '../../../../../app/hooks'
 import { useContentContext } from '../../../../../app/contexts/content'
@@ -41,8 +41,8 @@ const ManagerAddOrEdit = ({ initialState, resource, singular, edit, icon, childr
 
     const [isMounted, setIsMounted] = useState(false)
 
-    const [params] = useState({ role: role!, resource })
-    const [props] = useState({
+    const params = useMemo(() => ({ role: role!, resource }), [resource, role])
+    const props = useMemo(() => ({
         ...{
             auth: { role: role! },
             backend: { status, data: backend!, message },
@@ -60,18 +60,18 @@ const ManagerAddOrEdit = ({ initialState, resource, singular, edit, icon, childr
             info: () => dispatch(info(params)),
             post: (data: any) => dispatch(post({ ...params, data })),
         })
-    })
+    }), [backend, content, dispatch, edit, message, params, role, router, status])
 
     useEffect(() => {
         if (status === Status.IDLE && !backend) utility.add.lifecycle.componentDidMount(props, setIsMounted)
 
         return () => {
-            if (backend) dispatch(reset())
+            if (backend && !backend.message) dispatch(reset())
         }
     }, [backend, dispatch, props, status])
 
     useEffect(() => {
-        if (!state._id) utility.add.lifecycle.componentDidUpdate(resource, singular)({ ...props, backend: { status, data: backend, message } }, state, setState, () => setState({ ...initialState }))
+        if (!state._id) utility.add.lifecycle.componentDidUpdate(resource, singular)(props, state, setState, () => setState({ ...initialState }))
     }, [backend, initialState, message, props, resource, setState, singular, state, status])
 
     const _content = <div>
@@ -87,7 +87,7 @@ const ManagerAddOrEdit = ({ initialState, resource, singular, edit, icon, childr
 
         <PageTitle icon={icon} title={cms.title} subtitle={edit ? cms.edit : cms.add} />
 
-        <utility.add.lifecycle.render icon={icon} props={{ ...props, backend: { status, data: backend!, message } }} isMounted={isMounted} resource={resource}>
+        <utility.add.lifecycle.render icon={icon} props={props} isMounted={isMounted} resource={resource}>
             {staticChild}
             {_content}
         </utility.add.lifecycle.render>
