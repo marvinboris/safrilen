@@ -65,7 +65,7 @@ export default function Toolbar() {
                                 <GetQuote />
                             </div>
 
-                            <div>
+                            <div className="hidden lg:block">
                                 <LanguageSelect />
                             </div>
 

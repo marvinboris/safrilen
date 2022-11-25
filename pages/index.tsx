@@ -40,9 +40,9 @@ const HomePage: NextPageWithLayout<{ home: HomeDataType }> = ({ home }) => {
   </div>)
 
   const carouselContent = [
+    '/images/gallery/hobi-industri-NLBJ2I0lNr4-unsplash.jpg',
     '/images/frontend/danilo-alvesd-AzqJSCPkZkI-unsplash.jpg',
     '/images/gallery/thomas-kelley-xVptEZzgVfo-unsplash.jpg',
-    '/images/gallery/hobi-industri-NLBJ2I0lNr4-unsplash.jpg',
   ].map(src => <div key={`carousel-item-${src}`} className='before:absolute before:inset-0 before:bg-grid-white/[0.05] before:z-20 after:absolute after:inset-0 after:bg-gradient-to-t after:from-primary/70 after:to-primary/30 after:z-10 w-full h-full'>
     <NextImage width={1920} height={1920} src={src} alt='Bannière' className='image-cover' />
   </div>)

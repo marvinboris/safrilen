@@ -69,7 +69,10 @@ export default function Wrapper({ children }: WrapperProps) {
 
   useEffect(() => {
     if (languages === null) getLanguages()
-      .then(languages => setLanguages(languages))
+      .then(languages => {
+        setLanguages(languages)
+        setLanguage(languages.find(language => language.abbr === 'fr')!)
+      })
   }, [languages])
 
   useEffect(() => {

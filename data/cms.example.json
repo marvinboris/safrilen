@@ -537,7 +537,7 @@
         "pages": {
             "home": {
                 "banner": {
-                    "title": "Restez alimentés",
+                    "title": "Vivez l'énergie",
                     "subtitle": "Une alimentation efficace en électricité pour tous vos projets."
                 },
                 "contact": {
@@ -547,7 +547,7 @@
                 },
                 "services": {
                     "head": "Comment vous aider",
-                    "title": "Nos solutions",
+                    "title": "Nos services",
                     "view_all": "Découvrez tous nos services"
                 },
                 "testimonials": {
@@ -577,7 +577,7 @@
                 },
                 "services": {
                     "head": "Comment vous aider",
-                    "title": "Nos solutions",
+                    "title": "Nos services",
                     "view_all": "Découvrez tous nos services"
                 },
                 "about": {
