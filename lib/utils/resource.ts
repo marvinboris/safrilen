@@ -10,11 +10,12 @@ import { checkValidity, message } from "../../app/helpers/utils"
 
 import ContentType from "../../app/types/content"
 import ResourceType from "../../app/types/resource"
+import ValidationType from "../../app/types/validation"
 import ResourceInputType from "../../app/types/resource-input"
 
 import handleRequest from "../formidable"
 
-type Rules = { [key: string]: { [key: string]: boolean | number } }
+type Rules = { [key: string]: ValidationType }
 type SendConfig = { fields?: Fields, validate?: Rules }
 const validate = async (fields: string[], _fields: formidable.Fields, config?: SendConfig) => {
     const validation = await Promise.all(fields.map(async key => {

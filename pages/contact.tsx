@@ -32,13 +32,13 @@ const ContactPage: NextPageWithLayout = () => {
     const [status, setStatus] = useState(Status.IDLE)
     const [message, setMessage] = useState<MessageType | null>(null)
     const [value, setValue] = useState({ ...initialState })
-    
+
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         if (status === Status.LOADING) return
         try {
             setStatus(Status.LOADING)
-            const res = await axios.post<{message: MessageType}>('/api/frontend/contact', value)
+            const res = await axios.post<{ message: MessageType }>('/api/frontend/contact', value)
             setMessage(res.data.message)
             setStatus(Status.IDLE)
             setValue({ ...initialState })
@@ -122,10 +122,10 @@ const ContactPage: NextPageWithLayout = () => {
                         {message && <Alert className='mb-4' color={message.type}>{message.content}</Alert>}
 
                         <form onSubmit={handleSubmit} className='grid grid-cols-2 gap-4'>
-                            <Input name='name' onChange={onChange} value={value.name} required placeholder={cms.form.name} />
-                            <Input type='email' name='email' onChange={onChange} value={value.email} required placeholder={cms.form.email} />
-                            <Input className='col-span-2' name='subject' onChange={onChange} value={value.subject} required placeholder={cms.form.subject} />
-                            <TextArea className='col-span-2' name='message' onChange={onChange} value={value.message} required placeholder={cms.form.message} />
+                            <Input name='name' onChange={onChange} value={value.name} required validation={{ required: true }} placeholder={cms.form.name} />
+                            <Input type='email' name='email' onChange={onChange} value={value.email} required validation={{ required: true, isEmail: true }} placeholder={cms.form.email} />
+                            <Input className='col-span-2' name='subject' onChange={onChange} value={value.subject} required validation={{ required: true }} placeholder={cms.form.subject} />
+                            <TextArea className='col-span-2' name='message' onChange={onChange} value={value.message} required validation={{ required: true }} placeholder={cms.form.message} />
 
                             <div className='col-span-2 pt-5 text-center'>
                                 <Button icon={ArrowRightIcon} status={status}>{cms.form.submit}</Button>

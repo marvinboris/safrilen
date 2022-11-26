@@ -78,7 +78,7 @@ const ManagerAddOrEdit = ({ initialState, resource, singular, edit, icon, childr
         {children}
 
         <div className='mt-5'>
-            <Button pill color='green' icon={ArrowDownOnSquareIcon}>{save}</Button>
+            <Button color='green' icon={ArrowDownOnSquareIcon}>{save}</Button>
         </div>
     </div>
 

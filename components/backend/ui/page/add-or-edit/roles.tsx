@@ -8,7 +8,7 @@ import ManagerResourceManageStateType from "../../../../../app/types/account/man
 
 import { selectBackend } from "../../../../../features/backend/backendSlice"
 
-import Input from "../../../../frontend/ui/form/input"
+import Input from "../../form/input"
 
 import ManagerAddOrEdit from "../add-or-edit"
 
@@ -94,8 +94,8 @@ export default function ManageAddOrEditRoles({ edit }: Props) {
         <div className='grid md:grid-cols-3'>
             <div className="md:col-span-2">
                 <div className="flex-1 grid gap-y-2 gap-x-4 grid-cols-1 md:grid-cols-2 overflow-auto">
-                    <Input inputSize='sm' type="text" icon={TagIcon} onChange={inputChangeHandler} value={state.name as string} name="name" required label={form.name} />
-                    <Input inputSize="sm" type="text" icon={PencilIcon} onChange={inputChangeHandler} value={state.description as string} name="description" required label={form.description} />
+                    <Input icon={TagIcon} onChange={inputChangeHandler} value={state.name as string} name="name" required validation={{ required: true }} label={form.name} />
+                    <Input icon={PencilIcon} onChange={inputChangeHandler} value={state.description as string} name="description" required validation={{ required: true }} label={form.description} />
                 </div>
 
                 <div className="mt-4">

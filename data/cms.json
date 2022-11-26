@@ -169,10 +169,10 @@
                     "add": "Ajouter un service",
                     "index": "Liste des services"
                 },
-                "subjects": {
-                    "title": "Sujets",
-                    "add": "Ajouter un sujet",
-                    "index": "Liste des sujets"
+                "subscribers": {
+                    "title": "Abonnés",
+                    "add": "Ajouter un abonné",
+                    "index": "Liste des abonnés"
                 },
                 "products": {
                     "title": "Produits",
@@ -270,11 +270,11 @@
                 "updated": "Service modifi\u00e9 avec succ\u00e8s.",
                 "deleted": "Service supprim\u00e9 avec succ\u00e8s."
             },
-            "subjects": {
-                "not_found": "Sujet introuvable.",
-                "created": "Sujet cr\u00e9\u00e9 avec succ\u00e8s.",
-                "updated": "Sujet modifi\u00e9 avec succ\u00e8s.",
-                "deleted": "Sujet supprim\u00e9 avec succ\u00e8s."
+            "subscribers": {
+                "not_found": "Abonné introuvable.",
+                "created": "Abonné cr\u00e9\u00e9 avec succ\u00e8s.",
+                "updated": "Abonné modifi\u00e9 avec succ\u00e8s.",
+                "deleted": "Abonné supprim\u00e9 avec succ\u00e8s."
             },
             "products": {
                 "not_found": "Produit introuvable.",
@@ -439,11 +439,11 @@
                     "created_at": "Cr\u00e9\u00e9 le"
                 }
             },
-            "subjects": {
-                "title": "Sujets",
-                "add": "Ajouter un sujet",
-                "edit": "Modifier un sujet",
-                "index": "Liste des sujets",
+            "subscribers": {
+                "title": "Abonnés",
+                "add": "Ajouter un abonné",
+                "edit": "Modifier un abonné",
+                "index": "Liste des abonnés",
                 "form": {
                     "first_name": "Prénom(s)",
                     "email": "Adresse mail",

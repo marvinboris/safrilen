@@ -1,13 +1,13 @@
 import { ShoppingBagIcon, EyeIcon, PencilSquareIcon, BanknotesIcon } from "@heroicons/react/24/outline"
-import Image from "next/image"
 import { ChangeEvent, useState } from "react"
 
 import { useContentContext } from "../../../../../app/contexts/content"
 import ManagerResourceManageStateType from "../../../../../app/types/account/manager/add-or-edit/state"
 
-import Input from "../../../../frontend/ui/form/input"
-import Select from "../../../../frontend/ui/form/select"
-import TextArea from "../../../../frontend/ui/form/text-area"
+import Input from "../../form/input"
+import InputImage from "../../form/input-image"
+import Select from "../../form/select"
+import TextArea from "../../form/text-area"
 
 import * as utility from '../../utils'
 
@@ -37,13 +37,13 @@ export default function ManageAddOrEditProducts({ edit }: Props) {
     return <ManagerAddOrEdit icon={ShoppingBagIcon} edit={edit} resource='products' singular='product' initialState={initialState} state={state} setState={setState} staticChild={<>
         <input type="file" id="photo" name="photo" className="hidden" onChange={inputChangeHandler} accept=".png,.jpg,.jpeg" />
     </>}>
-        <div className='grid md:grid-cols-3'>
+        <div className='grid md:grid-cols-3 gap-4'>
             <div className="md:col-span-2">
                 <div className="flex-1 grid gap-y-2 gap-x-4 grid-cols-1 md:grid-cols-2 overflow-auto">
-                    <Input inputSize='sm' type="text" icon={ShoppingBagIcon} onChange={inputChangeHandler} value={state.name as string} name="name" required label={form.name} />
-                    <Input inputSize='sm' type="text" icon={BanknotesIcon} onChange={inputChangeHandler} value={state.price as string} name="price" required label={form.price} />
-                    <TextArea inputSize='sm' className="col-span-2" onChange={inputChangeHandler} value={state.description as string} name="description" required label={form.description} />
-                    <Select inputSize='sm' icon={EyeIcon} label={form.is_active} onChange={inputChangeHandler} value={state.isActive as string} name="isActive" required>
+                    <Input type="text" icon={ShoppingBagIcon} onChange={inputChangeHandler} value={state.name as string} name="name" required validation={{ required: true }} label={form.name} />
+                    <Input type="text" icon={BanknotesIcon} onChange={inputChangeHandler} value={state.price as string} name="price" required validation={{ isNumeric: true }} label={form.price} />
+                    <TextArea className="col-span-2" onChange={inputChangeHandler} value={state.description as string} name="description" required validation={{ required: true }} label={form.description} />
+                    <Select icon={EyeIcon} label={form.is_active} onChange={inputChangeHandler} value={state.isActive as string} name="isActive" required>
                         <option>{form.select_status}</option>
                         <option value={1}>{active}</option>
                         <option value={0}>{inactive}</option>
@@ -51,13 +51,8 @@ export default function ManageAddOrEditProducts({ edit }: Props) {
                 </div>
             </div>
 
-            <div className='md:flex items-center justify-center'>
-                <div onClick={() => fileUpload('photo')} className="aspect-[5/2] md:w-40 md:aspect-square cursor-pointer mt-[14px] md:mt-0 rounded-[15px] md:rounded-3xl relative flex flex-col items-center justify-center overflow-hidden text-white">
-                    {state.photo && <Image width={1920} height={1920} src={state.photo as string} alt="User profile pic" className="absolute z-0 inset-0 image-cover" />}
-                    <div className="absolute z-10 inset-0 bg-black/40" />
-                    <div className="relative z-20 w-9 md:w-14 h-9 md:h-14 mb-1 md:mb-1.5 rounded-full flex items-center justify-center bg-black/30"><PencilSquareIcon className='w-4 md:w-6' /></div>
-                    <div className="relative z-20 font-medium md:font-bold text-[14.81px]">Change</div>
-                </div>
+            <div>
+                <InputImage label={form.photo} name="photo" value={state.photo as string} onClick={() => fileUpload('photo')} />
             </div>
         </div>
     </ManagerAddOrEdit>

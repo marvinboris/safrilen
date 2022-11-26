@@ -1,6 +1,8 @@
-import { InputHTMLAttributes, ReactNode } from 'react'
+import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
+import { ChangeEvent, InputHTMLAttributes, ReactNode, useState } from 'react'
 
-import { classNames } from '../../../../../app/helpers/utils'
+import { checkValidity, classNames } from '../../../../../app/helpers/utils'
+import ValidationType from '../../../../../app/types/validation'
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
     inputSize?: 'sm' | 'lg'
@@ -8,9 +10,19 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
     label?: ReactNode
     addon?: ReactNode
     append?: ReactNode
+    validation?: ValidationType
 }
 
-export default function Input({ icon: Icon, label, addon, append, inputSize = 'lg', className, ...props }: InputProps) {
+export default function Input({ icon: Icon, label, addon, append, inputSize = 'lg', className, validation, ...props }: InputProps) {
+    const [touched, setTouched] = useState(false)
+
+    const valid = validation ? Object.values(checkValidity(props.value as string, validation)).reduce((a, b) => a && b, true) : true
+
+    const onChange = props.onChange ? (e: ChangeEvent<HTMLInputElement>) => {
+        setTouched(true)
+        props.onChange!(e)
+    } : () => { }
+
     return <div className={className}>
         {label && <label htmlFor={props.id ? props.id : props.name}>{label}</label>}
 
@@ -20,11 +32,15 @@ export default function Input({ icon: Icon, label, addon, append, inputSize = 'l
                     {<Icon className={classNames(inputSize === 'sm' ? "w-4 text-primary" : 'w-6 text-primary md:text-primary/20')} />}
                     {inputSize === 'sm' && <div className='rounded-full w-1 h-1 bg-secondary-700/20 absolute right-1.5 top-1/2 -translate-y-1/2' />}
                 </div>}
-                {addon && <div className='relative z-20 min-w-[48px] md:min-w-[64px] text-center flex items-center justify-center'>{addon}</div>}
+                {addon && <div className={classNames(inputSize === 'sm' ? "w-12" : "w-12 md:w-16", 'relative z-20 text-center flex items-center justify-center')}>{addon}</div>}
             </div>
 
-            <div className={classNames(inputSize === 'sm' ? Icon || addon ? 'pr-5' : 'px-5' : Icon || addon ? 'pr-8' : 'px-8', 'flex-1 relative z-0')}>
-                <input {...props} className={classNames(inputSize === 'sm' ? 'text-sm' : 'text-lg', 'min-h-[48px] border-none bg-transparent outline-none text-inherit w-full placeholder:opacity-30')} />
+            <div className={classNames(inputSize === 'sm' ? classNames(Icon || addon ? '' : 'pl-5', validation ? 'pr-10' : 'pr-5') : classNames(Icon || addon ? '' : 'pl-8', validation ? 'pr-12' : 'pr-8'), 'flex-1 relative z-0 h-full')}>
+                <input {...props} onChange={onChange} className={classNames(inputSize === 'sm' ? 'text-sm' : 'text-lg', 'h-full border-none bg-transparent outline-none focus:ring-0 text-inherit w-full placeholder:opacity-30 p-0')} />
+
+                {touched && validation ? <div className="absolute w-12 right-0 inset-y-0 flex items-center justify-center">
+                    {valid ? <CheckIcon className='w-4 text-green' /> : <ExclamationCircleIcon className='w-4 text-red' />}
+                </div> : null}
             </div>
 
             {append && <div className='pr-4'>{append}</div>}

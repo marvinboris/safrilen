@@ -31,7 +31,12 @@ export default async function handler(
         if (req.method === 'GET') {
             if (slug[0] === 'info') return manage.info()
             else return manage.show()
-        } else if (req.method === 'PATCH') return manage.patch()
+        } else if (req.method === 'PATCH') return manage.patch({
+            validate: {
+                firstName: { required: true },
+                email: { required: true, isEmail: true },
+            },
+        })
         else if (req.method === 'DELETE') return manage.delete()
         else methodNotAllowed(req, res)
     } catch (error) {

@@ -4,7 +4,7 @@ import { ChangeEvent, useState } from "react"
 import { useContentContext } from "../../../../../app/contexts/content"
 import ManagerResourceManageStateType from "../../../../../app/types/account/manager/add-or-edit/state"
 
-import Input from "../../../../frontend/ui/form/input"
+import Input from "../../form/input"
 
 import * as utility from '../../utils'
 
@@ -31,8 +31,8 @@ export default function ManageAddOrEditSubscribers({ edit }: Props) {
         <div className='grid md:grid-cols-3'>
             <div className="md:col-span-2">
                 <div className="flex-1 grid gap-y-2 gap-x-4 grid-cols-1 md:grid-cols-2 overflow-auto">
-                    <Input inputSize='sm' type="text" icon={UserIcon} onChange={inputChangeHandler} value={state.firstName as string} name="firstName" required label={form.first_name} />
-                    <Input inputSize="sm" type="email" icon={EnvelopeIcon} onChange={inputChangeHandler} value={state.email as string} name="email" required label={form.email} />
+                    <Input icon={UserIcon} onChange={inputChangeHandler} value={state.firstName as string} name="firstName" required validation={{ required: true }} label={form.first_name} />
+                    <Input type="email" icon={EnvelopeIcon} onChange={inputChangeHandler} value={state.email as string} name="email" required validation={{ required: true, isEmail: true }} label={form.email} />
                 </div>
             </div>
         </div>

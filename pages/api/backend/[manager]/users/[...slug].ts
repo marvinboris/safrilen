@@ -39,6 +39,12 @@ export default async function handler(
                 }
             })
         } else if (req.method === 'PATCH') return manage.patch({
+            validate: {
+                name: { required: true },
+                email: { required: true, isEmail: true },
+                phone: { required: true },
+                role: { required: true },
+            },
             fields: {
                 phone: fields => fields.phone,
                 password: async fields => fields.password ? await bcrypt.hash(fields.password as string, 12) : undefined

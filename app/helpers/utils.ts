@@ -1,5 +1,7 @@
 import axios, { AxiosError } from 'axios'
 
+import ValidationType from '../types/validation'
+
 export const setAuthToken = (token?: string | undefined | null) => {
     if (token) axios.defaults.headers.common['x-auth-token'] = token
     else delete axios.defaults.headers.common['x-auth-token']
@@ -43,7 +45,7 @@ export const timeFromTimestamp = (timestamp: number) => {
     return `${twoDigits(hours)} : ${twoDigits(minutes)} : ${twoDigits(seconds)}`;
 }
 
-export const checkValidity = (value = '', rules: { [key: string]: boolean | number }) => {
+export const checkValidity = (value = '', rules: ValidationType) => {
     const validation: { [key: string]: boolean } = {};
 
     if (rules.required) validation.required = value.trim() !== '';

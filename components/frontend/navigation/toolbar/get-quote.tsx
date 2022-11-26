@@ -59,17 +59,17 @@ export default function GetQuote() {
                 {message && <Alert className='mb-4' color={message.type}>{message.content}</Alert>}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-[17.34px] gap-y-[13.63px] mb-[22.8px]">
-                    <Input name="first_name" icon={UserIcon} value={value.first_name} placeholder={quote.form.first_name} onChange={onChange} />
-                    <Input name="last_name" icon={UserIcon} value={value.last_name} placeholder={quote.form.last_name} onChange={onChange} />
-                    <Input type='email' name="email" icon={EnvelopeIcon} value={value.email} placeholder={quote.form.email} onChange={onChange} />
-                    <Input addon={<div className="font-semibold text-primary sm:text-primary/20 text-base sm:text-lg">237</div>} type='tel' name='phone' onChange={onChange} value={value.phone} placeholder={quote.form.phone} />
-                    <Input icon={MapPinIcon} name='address' onChange={onChange} value={value.address} placeholder={quote.form.address} className="sm:col-span-2" />
-                    <Select icon={WrenchIcon} name="service" value={value.service} onChange={onChange}>
+                    <Input inputSize="sm" name="first_name" icon={UserIcon} value={value.first_name} placeholder={quote.form.first_name} required validation={{ required: true }} onChange={onChange} />
+                    <Input inputSize="sm" name="last_name" icon={UserIcon} value={value.last_name} placeholder={quote.form.last_name} required validation={{ required: true }} onChange={onChange} />
+                    <Input inputSize="sm" type='email' name="email" icon={EnvelopeIcon} value={value.email} placeholder={quote.form.email} required validation={{ required: true, isEmail: true }} onChange={onChange} />
+                    <Input inputSize="sm" addon={<div className="font-semibold text-primary sm:text-primary/20 text-sm">237</div>} type='tel' name='phone' required validation={{ required: true }} onChange={onChange} value={value.phone} placeholder={quote.form.phone} />
+                    <Input inputSize="sm" icon={MapPinIcon} name='address' required validation={{ required: true }} onChange={onChange} value={value.address} placeholder={quote.form.address} className="sm:col-span-2" />
+                    <Select inputSize="sm" icon={WrenchIcon} name="service" value={value.service} required validation={{ required: true }} onChange={onChange}>
                         <option value="">{quote.form.select_service}</option>
                         {services.map(service => <option key={JSON.stringify(service)} value={service._id}>{service.title}</option>)}
                     </Select>
-                    <Input type='date' icon={CalendarDaysIcon} name='date' onChange={onChange} value={value.date} placeholder={quote.form.date} />
-                    <TextArea name="comment" onChange={onChange} value={value.comment} placeholder={quote.form.comment} className="sm:col-span-2" />
+                    <Input inputSize="sm" type='date' icon={CalendarDaysIcon} name='date' required validation={{ required: true }} onChange={onChange} value={value.date} placeholder={quote.form.date} />
+                    <TextArea inputSize="sm" name="comment" required validation={{ required: true }} onChange={onChange} value={value.comment} placeholder={quote.form.comment} className="sm:col-span-2" />
                 </div>
 
                 <div className="text-center">

@@ -1,25 +1,25 @@
 import { ArrowRightIcon, EnvelopeIcon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import { CheckIcon } from '@heroicons/react/20/solid'
+import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ChangeEvent, ComponentProps, FormEvent, ReactElement, useState } from 'react'
 
+import { useContentContext } from '../app/contexts/content'
+import Status from '../app/types/enums/status'
+import MessageType from '../app/types/message'
+
 import SocialNetworks from '../components/frontend/navigation/footer/social-networks'
 import Layout, { Head } from '../components/frontend/navigation/layout'
+import Alert from '../components/frontend/ui/alert'
 import SectionBlock from '../components/frontend/ui/blocks/section'
 import ServiceBlock from '../components/frontend/ui/blocks/service'
 import Button from '../components/frontend/ui/form/button'
+import Input from '../components/frontend/ui/form/input'
 import PageTitle from '../components/frontend/ui/title/page'
 import SectionTitle from '../components/frontend/ui/title/section'
 
-import { useContentContext } from '../app/contexts/content'
-
 import { NextPageWithLayout } from './_app'
-import Alert from '../components/frontend/ui/alert'
-import Status from '../app/types/enums/status'
-import Input from '../components/frontend/ui/form/input'
-import MessageType from '../app/types/message'
-import axios from 'axios'
 
 const initialState = {
     firstName: '',
@@ -45,13 +45,13 @@ const AboutPage: NextPageWithLayout = () => {
     const [status, setStatus] = useState(Status.IDLE)
     const [message, setMessage] = useState<MessageType | null>(null)
     const [value, setValue] = useState({ ...initialState })
-    
+
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         if (status === Status.LOADING) return
         try {
             setStatus(Status.LOADING)
-            const res = await axios.post<{message: MessageType}>('/api/frontend/newsletter', value)
+            const res = await axios.post<{ message: MessageType }>('/api/frontend/newsletter', value)
             setMessage(res.data.message)
             setStatus(Status.IDLE)
             setValue({ ...initialState })
@@ -194,8 +194,8 @@ const AboutPage: NextPageWithLayout = () => {
                         {message && <Alert className='mb-4' color={message.type}>{message.content}</Alert>}
 
                         <form onSubmit={handleSubmit} className='grid gap-4'>
-                            <Input name='firstName' onChange={onChange} value={value.firstName} required placeholder={cms.newsletter.form.first_name} />
-                            <Input type='email' name='email' onChange={onChange} value={value.email} required placeholder={cms.newsletter.form.email} />
+                            <Input name='firstName' onChange={onChange} value={value.firstName} required validation={{ required: true }} placeholder={cms.newsletter.form.first_name} />
+                            <Input type='email' name='email' onChange={onChange} value={value.email} required validation={{ required: true, isEmail: true }} placeholder={cms.newsletter.form.email} />
 
                             <div className='col-span-2 pt-5 text-center'>
                                 <Button icon={ArrowRightIcon} status={status}>{cms.newsletter.form.submit}</Button>

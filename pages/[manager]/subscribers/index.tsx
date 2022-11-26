@@ -1,4 +1,4 @@
-import { CogIcon } from '@heroicons/react/24/outline'
+import { UserIcon } from '@heroicons/react/24/outline'
 import { ReactElement } from 'react'
 
 import { useContentContext } from '../../../app/contexts/content'
@@ -39,7 +39,7 @@ const ManagerFeaturesPage: NextPageWithLayout = () => {
         { name: action, key: 'action', fixed: true }
     ]
 
-    return <ManageRead data={data} fields={fields} icon={CogIcon} resource={resource} />
+    return <ManageRead data={data} fields={fields} icon={UserIcon} resource={resource} />
 }
 
 ManagerFeaturesPage.getLayout = function getLayout(page: ReactElement) {

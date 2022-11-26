@@ -51,8 +51,9 @@ export default async function handler(
         if (req.method === 'GET') return manage.get()
         else if (req.method === 'POST') return manage.post({
             validate: {
-                firstName: { minLength: 3 }
-            }
+                firstName: { required: true },
+                email: { required: true, isEmail: true },
+            },
         })
         else methodNotAllowed(req, res)
     } catch (error) {
