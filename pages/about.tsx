@@ -22,7 +22,7 @@ import MessageType from '../app/types/message'
 import axios from 'axios'
 
 const initialState = {
-    first_name: '',
+    firstName: '',
     email: '',
 }
 
@@ -194,7 +194,7 @@ const AboutPage: NextPageWithLayout = () => {
                         {message && <Alert className='mb-4' color={message.type}>{message.content}</Alert>}
 
                         <form onSubmit={handleSubmit} className='grid gap-4'>
-                            <Input name='first_name' onChange={onChange} value={value.first_name} required placeholder={cms.newsletter.form.first_name} />
+                            <Input name='firstName' onChange={onChange} value={value.firstName} required placeholder={cms.newsletter.form.first_name} />
                             <Input type='email' name='email' onChange={onChange} value={value.email} required placeholder={cms.newsletter.form.email} />
 
                             <div className='col-span-2 pt-5 text-center'>

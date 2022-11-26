@@ -142,7 +142,7 @@ export default interface ContentType {
             }
         }
         frontend: {
-            header: { menu: { home: string, about: string, services: string, products: string, contact: string, quote: string } }
+            header: { menu: { home: string, about: string, services: string, products: string, blog: string, contact: string, quote: string } }
             footer: {
                 top: {
                     navigation: {
@@ -179,6 +179,7 @@ export default interface ContentType {
             messages: {
                 contact: { success: string, failure: string }
                 quote: { success: string, failure: string }
+                newsletter: { success: string, failure: string }
             },
             pages: {
                 home: {
@@ -210,7 +211,7 @@ export default interface ContentType {
                     solutions: { head: string, title: string }
                 },
                 publications: {
-                    title: string, subtitle: string, description: string
+                    title: string, subtitle: string, description: string, search: string, recent: string
                     publications: { head: string, title: string }
                 },
                 products: {

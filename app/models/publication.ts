@@ -44,7 +44,7 @@ export const PublicationSchema = new Schema<PublicationInterface, Model<Publicat
 }, { timestamps: true, toObject: { getters: true, virtuals: true } })
 
 // Virtuals
-PublicationSchema.virtual('link').get(function () { return `/publications/${this.slug}` })
+PublicationSchema.virtual('link').get(function () { return `/blog/${this.slug}` })
 
 PublicationSchema.pre<PublicationInterface>("save", function (next) {
     this.slug = slugify(this.title, { lower: true });

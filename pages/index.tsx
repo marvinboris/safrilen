@@ -1,29 +1,29 @@
-import { ArrowRightIcon, BoltIcon, EnvelopeIcon, LightBulbIcon, MapPinIcon, PhoneIcon, PresentationChartLineIcon, ShieldCheckIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline'
+import { ArrowRightIcon, BoltIcon, LightBulbIcon, PresentationChartLineIcon, ShieldCheckIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline'
 import { CheckIcon } from '@heroicons/react/20/solid'
-import axios from 'axios'
 import { Carousel } from 'flowbite-react'
 import NextImage from 'next/image'
 import Link from 'next/link'
-import { ComponentProps, ReactElement, useEffect, useState } from 'react'
+import { ComponentProps, ReactElement } from 'react'
 
 import { useContentContext } from '../app/contexts/content'
 import { useWindowSize } from '../app/hooks'
-import { Image, Testimonial } from '../app/models'
+import { Image, Publication, Testimonial } from '../app/models'
 import { ImageInterface } from '../app/models/image'
+import { PublicationInterface } from '../app/models/publication'
 import { TestimonialInterface } from '../app/models/testimonial'
 
-import SocialNetworks from '../components/frontend/navigation/footer/social-networks'
 import Layout, { Head } from '../components/frontend/navigation/layout'
 import ImageBlock from '../components/frontend/ui/blocks/image'
 import SectionBlock from '../components/frontend/ui/blocks/section'
 import ServiceBlock from '../components/frontend/ui/blocks/service'
+import PublicationBlock from '../components/frontend/ui/blocks/publication'
 import TestimonialBlock from '../components/frontend/ui/blocks/testimonial'
 import Button from '../components/frontend/ui/form/button'
 import SectionTitle from '../components/frontend/ui/title/section'
 
 import { NextPageWithLayout } from './_app'
 
-type HomeDataType = { images: ImageInterface[], testimonials: TestimonialInterface[] }
+type HomeDataType = { images: ImageInterface[], testimonials: TestimonialInterface[], publications: PublicationInterface[] }
 
 const Li = (props: ComponentProps<'li'>) => <li className='flex' {...props}>
   <CheckIcon className='w-4 mr-2 text-primary' />{props.children}
@@ -35,14 +35,14 @@ const HomePage: NextPageWithLayout<{ home: HomeDataType }> = ({ home }) => {
   const { content } = useContentContext()
   const { services, cms: { global: { app_name }, frontend: { components: { solutions }, pages: { home: cms } } } } = content!
 
-  const servicesContent = services.filter((_service, i) => i < 3).map(service => <div key={`service-${service._id}`} className='flex-none w-full md:w-1/2 xl:w-1/3 px-2 md:px-3'>
+  const servicesContent = services.filter((_service, i) => i < 3).map(service => <div key={`service-${service.id}`} className='flex-none w-full md:w-1/2 xl:w-1/3 px-2 md:px-3'>
     <ServiceBlock {...service} />
   </div>)
 
   const solutionsContent = solutions.map((solution, i) => {
     const Icon = [LightBulbIcon, PresentationChartLineIcon, BoltIcon, ShieldCheckIcon, WrenchScrewdriverIcon][i]
 
-    return <div key={`solution-${solution}`} className='flex flex-col flex-none w-1/3 px-2 md:px-3 items-center text-center space-y-4'>
+    return <div key={`solution-${solution}`} className='flex flex-col flex-none w-1/2 md:w-1/3 px-2 md:px-3 items-center text-center space-y-4 pb-4 md:pb-6'>
       <div><Icon className='w-16 text-primary' /></div>
       <div className='font-medium'>{solution}</div>
     </div>
@@ -56,7 +56,7 @@ const HomePage: NextPageWithLayout<{ home: HomeDataType }> = ({ home }) => {
     <NextImage width={1920} height={1920} src={src} alt='Bannière' className='image-cover' />
   </div>)
 
-  const galleryContent = home.images.map((image: ImageInterface, index: number) => <ImageBlock key={`image-${image.photo}-${index}`} {...image} />)
+  const galleryContent = home.images.map((image: ImageInterface, index: number) => <ImageBlock key={`image-${image.id}-${index}`} {...image} />)
 
   const testimoniesContent = []
   const renderTestimony = (testimony: TestimonialInterface, index: number) => <TestimonialBlock key={`testimony-${testimony.body}-${index}`} {...testimony} />
@@ -68,6 +68,10 @@ const HomePage: NextPageWithLayout<{ home: HomeDataType }> = ({ home }) => {
       </ul>
     </li>)
   }
+
+  const publicationsContent = home.publications.map((publication: PublicationInterface, index: number) => <div key={`publication-${publication.id}-${index}`} className='flex-none w-full md:w-1/2 xl:w-1/3 px-2 md:px-3'>
+    <PublicationBlock {...publication} />
+  </div>)
 
   return <>
     <Head link='/' title={app_name} description={cms.about.description} />
@@ -164,6 +168,20 @@ const HomePage: NextPageWithLayout<{ home: HomeDataType }> = ({ home }) => {
           </div>
         </div>
       </SectionBlock>
+
+      <SectionBlock id="publications">
+        <div className="container">
+          <SectionTitle centered head={cms.publications.head} title={cms.publications.title} />
+
+          <div className="flex flex-nowrap md:flex-wrap overflow-auto -mx-7 px-5 md:px-4 mb-6 pb-5">
+            {publicationsContent}
+          </div>
+
+          <div className='text-center'>
+            <Link href='/blog'><Button icon={ArrowRightIcon}>{cms.publications.view_all}</Button></Link>
+          </div>
+        </div>
+      </SectionBlock>
     </main>
   </>
 }
@@ -175,10 +193,12 @@ HomePage.getLayout = function getLayout(page: ReactElement) {
 export async function getServerSideProps() {
   const images = await Image.find().limit(12)
   const testimonials = await Testimonial.find().limit(3)
+  const publications = await Publication.find().limit(3)
 
   const home = JSON.parse(JSON.stringify({
     images: images.map(image => image.toObject()),
     testimonials: testimonials.map(testimonial => testimonial.toObject()),
+    publications: publications.map(publication => publication.toObject()),
   }))
 
   return { props: { home } }

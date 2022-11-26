@@ -517,6 +517,7 @@
                 "about": "Société",
                 "services": "Services",
                 "products": "Produits",
+                "blog": "Blog",
                 "contact": "Contact",
                 "quote": "Devis"
             }
@@ -588,6 +589,10 @@
             "quote": {
                 "success": "Formulaire soumis.",
                 "failure": "Echec."
+            },
+            "newsletter": {
+                "success": "Formulaire soumis.",
+                "failure": "Echec."
             }
         },
         "pages": {
@@ -608,6 +613,11 @@
                 "testimonials": {
                     "head": "Des opinions sur nos prestations",
                     "title": "Ils nous ont fait confiance"
+                },
+                "publications": {
+                    "head": "Dernières nouvelles",
+                    "title": "Blog",
+                    "view_all": "Découvrez toutes nos publications"
                 },
                 "about": {
                     "head": "A propos de Safrilen",
@@ -707,8 +717,11 @@
                 "title": "Blog",
                 "subtitle": "Nos publications",
                 "description": "Tous les publications de Safrilen.",
+                "search": "Rechercher",
+                "recent": "Publications récentes",
                 "publications": {
-                    "recent": "Publications récentes"
+                    "head": "Le blog de Safrilen",
+                    "title": "Toutes nos publications"
                 }
             },
             "products": {
