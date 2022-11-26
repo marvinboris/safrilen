@@ -3,10 +3,7 @@ import Image from "next/image"
 import { ChangeEvent, useState } from "react"
 
 import { useContentContext } from "../../../../../app/contexts/content"
-import { useAppSelector } from "../../../../../app/hooks"
 import ManagerResourceManageStateType from "../../../../../app/types/account/manager/add-or-edit/state"
-
-import { selectBackend } from "../../../../../features/backend/backendSlice"
 
 import Input from "../../../../frontend/ui/form/input"
 import Select from "../../../../frontend/ui/form/select"
@@ -29,8 +26,6 @@ const initialState = {
 }
 
 export default function ManageAddOrEditTestimonials({ edit }: Props) {
-    const { status, data: backend, message } = useAppSelector(selectBackend)
-
     const { content } = useContentContext()
     const { cms: { backend: { components: { form: { active, inactive } }, pages: { testimonials: { form } } } } } = content!
 

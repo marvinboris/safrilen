@@ -5,6 +5,7 @@ import { FeatureInterface, FeatureSchema } from './feature'
 import { ImageInterface, ImageSchema } from './image'
 import { RoleInterface, RoleSchema } from './role'
 import { ServiceInterface, ServiceSchema } from './service'
+import { PublicationInterface, PublicationSchema } from './publication'
 import { ProductInterface, ProductSchema } from './product'
 import { TestimonialInterface, TestimonialSchema } from './testimonial'
 import { UserInterface, UserSchema } from './user'
@@ -15,5 +16,6 @@ export const Image = models.Image as Model<ImageInterface> || model<ImageInterfa
 export const Role = models.Role as Model<RoleInterface> || model<RoleInterface>("Role", RoleSchema)
 export const Service = models.Service as Model<ServiceInterface> || model<ServiceInterface>("Service", ServiceSchema)
 export const Product = models.Product as Model<ProductInterface> || model<ProductInterface>("Product", ProductSchema)
+export const Publication = models.Publication as Model<PublicationInterface> || model<PublicationInterface>("Publication", PublicationSchema)
 export const Testimonial = models.Testimonial as Model<TestimonialInterface> || model<TestimonialInterface>("Testimonial", TestimonialSchema)
 export const User = models.User as Model<UserInterface> || model<UserInterface>("User", UserSchema)

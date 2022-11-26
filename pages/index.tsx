@@ -1,4 +1,4 @@
-import { ArrowRightIcon, EnvelopeIcon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/outline'
+import { ArrowRightIcon, BoltIcon, EnvelopeIcon, LightBulbIcon, MapPinIcon, PhoneIcon, PresentationChartLineIcon, ShieldCheckIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline'
 import { CheckIcon } from '@heroicons/react/20/solid'
 import axios from 'axios'
 import { Carousel } from 'flowbite-react'
@@ -33,11 +33,20 @@ const HomePage: NextPageWithLayout<{ home: HomeDataType }> = ({ home }) => {
   const { width } = useWindowSize()
 
   const { content } = useContentContext()
-  const { services, cms: { global: { app_name, contact }, frontend: { pages: { home: cms } } } } = content!
+  const { services, cms: { global: { app_name }, frontend: { components: { solutions }, pages: { home: cms } } } } = content!
 
   const servicesContent = services.filter((_service, i) => i < 3).map(service => <div key={`service-${service._id}`} className='flex-none w-full md:w-1/2 xl:w-1/3 px-2 md:px-3'>
     <ServiceBlock {...service} />
   </div>)
+
+  const solutionsContent = solutions.map((solution, i) => {
+    const Icon = [LightBulbIcon, PresentationChartLineIcon, BoltIcon, ShieldCheckIcon, WrenchScrewdriverIcon][i]
+
+    return <div key={`solution-${solution}`} className='flex flex-col flex-none w-1/3 px-2 md:px-3 items-center text-center space-y-4'>
+      <div><Icon className='w-16 text-primary' /></div>
+      <div className='font-medium'>{solution}</div>
+    </div>
+  })
 
   const carouselContent = [
     '/images/gallery/hobi-industri-NLBJ2I0lNr4-unsplash.jpg',
@@ -126,7 +135,17 @@ const HomePage: NextPageWithLayout<{ home: HomeDataType }> = ({ home }) => {
         </div>
       </SectionBlock>
 
-      <SectionBlock id="testimonials">
+      <SectionBlock id="solutions">
+        <div className="container">
+          <SectionTitle centered head={cms.solutions.head} title={cms.solutions.title} />
+
+          <div className="flex flex-wrap justify-center -mx-2 px-2 md:-mx-3 md:px-3">
+            {solutionsContent}
+          </div>
+        </div>
+      </SectionBlock>
+
+      <SectionBlock id="testimonials" className="bg-grid-primary/[0.05] relative z-0 after:absolute after:bottom-0 after:inset-0 after:bg-gradient-to-t after:from-white after:to-transparent after:-z-10">
         <div className="container">
           <div className="lg:flex flex-wrap items-center lg:-mx-3">
             <div className="order-1 lg:order-2 lg:w-6/12 xl:w-5/12 lg:px-3">
@@ -140,60 +159,6 @@ const HomePage: NextPageWithLayout<{ home: HomeDataType }> = ({ home }) => {
             <div className="order-2 lg:order-1 mt-16 lg:mt-0 lg:w-6/12 xl:w-7/12 lg:px-3">
               <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 md:gap-6">
                 {galleryContent}
-              </div>
-            </div>
-          </div>
-        </div>
-      </SectionBlock>
-
-      <SectionBlock id="contact" className='bg-grid-primary/[0.05] relative z-0 after:absolute after:bottom-0 after:inset-0 after:bg-gradient-to-t after:from-white after:to-transparent after:-z-10'>
-        <div className="container">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="order-2 md:order-1 mt-[31px] md:mt-0 pb-[49px] md:pb-0">
-              <div className='aspect-video rounded-[27.759px] shadow-lg overflow-hidden relative'>
-                <iframe src={contact.map} className="w-full h-full absolute inset-0 bg-white" />
-              </div>
-            </div>
-
-            <div className="order-1 md:order-2">
-              <SectionTitle head={cms.contact.head} title={cms.contact.title} />
-
-              <div className='space-y-6'>
-                <div className="flex">
-                  <div>
-                    <div className="w-12">
-                      <MapPinIcon className='text-primary w-7' />
-                    </div>
-                  </div>
-
-                  <div>
-                    {cms.contact.address}
-                  </div>
-                </div>
-
-                <div className="flex">
-                  <div>
-                    <div className="w-12">
-                      <EnvelopeIcon className='text-primary w-7' />
-                    </div>
-                  </div>
-
-                  <div>{contact.email}</div>
-                </div>
-
-                <div className="flex">
-                  <div>
-                    <div className="w-12">
-                      <PhoneIcon className='text-primary w-7' />
-                    </div>
-                  </div>
-
-                  <div>{contact.phone}</div>
-                </div>
-              </div>
-
-              <div className="mt-10">
-                <SocialNetworks />
               </div>
             </div>
           </div>

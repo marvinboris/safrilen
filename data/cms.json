@@ -169,10 +169,20 @@
                     "add": "Ajouter un service",
                     "index": "Liste des services"
                 },
+                "subjects": {
+                    "title": "Sujets",
+                    "add": "Ajouter un sujet",
+                    "index": "Liste des sujets"
+                },
                 "products": {
                     "title": "Produits",
                     "add": "Ajouter un produit",
                     "index": "Liste des produits"
+                },
+                "publications": {
+                    "title": "Publications",
+                    "add": "Ajouter une publication",
+                    "index": "Liste des publications"
                 },
                 "testimonials": {
                     "title": "Témoignages",
@@ -260,11 +270,23 @@
                 "updated": "Service modifi\u00e9 avec succ\u00e8s.",
                 "deleted": "Service supprim\u00e9 avec succ\u00e8s."
             },
+            "subjects": {
+                "not_found": "Sujet introuvable.",
+                "created": "Sujet cr\u00e9\u00e9 avec succ\u00e8s.",
+                "updated": "Sujet modifi\u00e9 avec succ\u00e8s.",
+                "deleted": "Sujet supprim\u00e9 avec succ\u00e8s."
+            },
             "products": {
                 "not_found": "Produit introuvable.",
                 "created": "Produit cr\u00e9\u00e9 avec succ\u00e8s.",
                 "updated": "Produit modifi\u00e9 avec succ\u00e8s.",
                 "deleted": "Produit supprim\u00e9 avec succ\u00e8s."
+            },
+            "publications": {
+                "not_found": "Publication introuvable.",
+                "created": "Publication cr\u00e9\u00e9e avec succ\u00e8s.",
+                "updated": "Publication modifi\u00e9e avec succ\u00e8s.",
+                "deleted": "Publication supprim\u00e9e avec succ\u00e8s."
             },
             "testimonials": {
                 "not_found": "Témoignage introuvable.",
@@ -417,6 +439,17 @@
                     "created_at": "Cr\u00e9\u00e9 le"
                 }
             },
+            "subjects": {
+                "title": "Sujets",
+                "add": "Ajouter un sujet",
+                "edit": "Modifier un sujet",
+                "index": "Liste des sujets",
+                "form": {
+                    "first_name": "Prénom(s)",
+                    "email": "Adresse mail",
+                    "created_at": "Cr\u00e9\u00e9 le"
+                }
+            },
             "products": {
                 "title": "Produits",
                 "add": "Ajouter un produit",
@@ -428,6 +461,22 @@
                     "price": "Prix",
                     "photo": "Photo",
                     "product_photo": "Photo du produit",
+                    "is_active": "Statut",
+                    "select_status": "S\u00e9lectionner le statut",
+                    "created_at": "Cr\u00e9\u00e9 le"
+                }
+            },
+            "publications": {
+                "title": "Publications",
+                "add": "Ajouter une publication",
+                "edit": "Modifier une publication",
+                "index": "Liste des publications",
+                "form": {
+                    "title": "Titre",
+                    "description": "Description",
+                    "body": "Contenu",
+                    "photo": "Photo",
+                    "publication_photo": "Photo du publication",
                     "is_active": "Statut",
                     "select_status": "S\u00e9lectionner le statut",
                     "created_at": "Cr\u00e9\u00e9 le"
@@ -522,7 +571,14 @@
                     "comment": "Détails supplémentaires",
                     "continue": "Continuer"
                 }
-            }
+            },
+            "solutions": [
+                "Gestion stratégique de l'énergie",
+                "Contrôle, diagnostic et maintenance des installations",
+                "Recyclage de l'énergie",
+                "Equipement de protection individuelle",
+                "Service après vente"
+            ]
         },
         "messages": {
             "contact": {
@@ -540,19 +596,18 @@
                     "title": "Vivez l'énergie",
                     "subtitle": "Une alimentation efficace en électricité pour tous vos projets."
                 },
-                "contact": {
-                    "head": "Retrouvez-nous",
-                    "title": "Contact",
-                    "address": "Ndogsimbi - En Face AES Sonel Ndokotti - Face Forage UCB"
-                },
                 "services": {
                     "head": "Comment vous aider",
                     "title": "Nos services",
                     "view_all": "Découvrez tous nos services"
                 },
+                "solutions": {
+                    "head": "Vos problèmes résolus",
+                    "title": "Nos solutions"
+                },
                 "testimonials": {
                     "head": "Des opinions sur nos prestations",
-                    "title": "Ils nous font confiance"
+                    "title": "Ils nous ont fait confiance"
                 },
                 "about": {
                     "head": "A propos de Safrilen",
@@ -579,6 +634,16 @@
                     "head": "Comment vous aider",
                     "title": "Nos services",
                     "view_all": "Découvrez tous nos services"
+                },
+                "newsletter": {
+                    "head": "Newsletter",
+                    "title": "Inscrivez-vous",
+                    "description": "Recevez régulièrement des conseils de notre équipe d'experts.",
+                    "form": {
+                        "first_name": "Prénom(s)",
+                        "email": "Adresse mail",
+                        "submit": "Soumettre"
+                    }
                 },
                 "about": {
                     "head": "Qui sommes-nous?",
@@ -632,6 +697,18 @@
                 "services": {
                     "head": "Comment pouvons-nous vous aider",
                     "title": "Tous nos services"
+                },
+                "solutions": {
+                    "head": "Vos problèmes résolus",
+                    "title": "Nos solutions"
+                }
+            },
+            "publications": {
+                "title": "Blog",
+                "subtitle": "Nos publications",
+                "description": "Tous les publications de Safrilen.",
+                "publications": {
+                    "recent": "Publications récentes"
                 }
             },
             "products": {

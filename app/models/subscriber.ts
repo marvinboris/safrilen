@@ -2,19 +2,20 @@ import { Model, Schema } from "mongoose"
 
 export interface FeatureInterface {
     id?: string
-    name: string
-    prefix: string
+    firstName: string
+    email: string
     createdAt?: Date
     updatedAt?: Date
 }
 
 export const FeatureSchema = new Schema<FeatureInterface, Model<FeatureInterface>>({
-    name: {
+    firstName: {
         type: String,
         required: true
     },
-    prefix: {
+    email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 }, { timestamps: true })

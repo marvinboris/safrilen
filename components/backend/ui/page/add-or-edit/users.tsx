@@ -8,7 +8,6 @@ import { RoleInterface } from "../../../../../app/models/role"
 import ManagerResourceManageStateType from "../../../../../app/types/account/manager/add-or-edit/state"
 
 import { selectBackend } from "../../../../../features/backend/backendSlice"
-import Alert from "../../../../frontend/ui/alert"
 
 import Input from "../../../../frontend/ui/form/input"
 import Select from "../../../../frontend/ui/form/select"
@@ -32,7 +31,7 @@ const initialState = {
 }
 
 export default function ManageAddOrEditUsers({ edit }: Props) {
-    const { status, data: backend, message } = useAppSelector(selectBackend)
+    const { data: backend } = useAppSelector(selectBackend)
 
     const { content } = useContentContext()
     const { cms: { backend: { pages: { users: { form } } } } } = content!

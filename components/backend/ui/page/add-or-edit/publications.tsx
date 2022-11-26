@@ -1,9 +1,12 @@
-import { WrenchIcon, EyeIcon, PencilSquareIcon } from "@heroicons/react/24/outline"
+import { ChatBubbleLeftEllipsisIcon, EyeIcon, PencilSquareIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
 import { ChangeEvent, useState } from "react"
 
 import { useContentContext } from "../../../../../app/contexts/content"
+import { useAppSelector } from "../../../../../app/hooks"
 import ManagerResourceManageStateType from "../../../../../app/types/account/manager/add-or-edit/state"
+
+import { selectBackend } from "../../../../../features/backend/backendSlice"
 
 import Input from "../../../../frontend/ui/form/input"
 import Select from "../../../../frontend/ui/form/select"
@@ -11,12 +14,13 @@ import TextArea from "../../../../frontend/ui/form/text-area"
 
 import * as utility from '../../utils'
 
-import ManagerAddOrEdit from "../add-or-edit"
+import ManagerAddOrEdit from "."
 
 type Props = { edit?: boolean }
 
 const initialState = {
     title: '',
+    description: '',
     body: '',
     photo: '',
     isActive: '1',
@@ -24,28 +28,31 @@ const initialState = {
     add: false,
 }
 
-export default function ManageAddOrEditServices({ edit }: Props) {
+export default function ManageAddOrEditPublications({ edit }: Props) {
+    const { status, data: backend, message } = useAppSelector(selectBackend)
+
     const { content } = useContentContext()
-    const { cms: { backend: { components: { form: { active, inactive } }, pages: { services: { form } } } } } = content!
+    const { cms: { backend: { components: { form: { active, inactive } }, pages: { publications: { form } } } } } = content!
 
     const [state, setState] = useState<ManagerResourceManageStateType>({ ...initialState })
 
     const inputChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => utility.add.component.inputChangeHandler(setState)(e)
     const fileUpload = (id: string) => utility.add.component.fileUpload(id)
 
-    return <ManagerAddOrEdit icon={WrenchIcon} edit={edit} resource='services' singular='service' initialState={initialState} state={state} setState={setState} staticChild={<>
+    return <ManagerAddOrEdit icon={ChatBubbleLeftEllipsisIcon} edit={edit} resource='publications' singular='publication' initialState={initialState} state={state} setState={setState} staticChild={<>
         <input type="file" id="photo" name="photo" className="hidden" onChange={inputChangeHandler} accept=".png,.jpg,.jpeg" />
     </>}>
         <div className='grid md:grid-cols-3'>
             <div className="md:col-span-2">
                 <div className="flex-1 grid gap-y-2 gap-x-4 grid-cols-1 md:grid-cols-2 overflow-auto">
-                    <Input inputSize='sm' type="text" icon={WrenchIcon} onChange={inputChangeHandler} value={state.title as string} name="title" required label={form.title} />
+                    <Input inputSize='sm' type="text" icon={ChatBubbleLeftEllipsisIcon} onChange={inputChangeHandler} value={state.title as string} name="title" required label={form.title} />
+                    <TextArea inputSize='sm' className="col-span-2" onChange={inputChangeHandler} value={state.description as string} name="description" required label={form.description} />
+                    <TextArea inputSize='sm' className="col-span-2" onChange={inputChangeHandler} value={state.body as string} name="body" required label={form.body} />
                     <Select inputSize='sm' icon={EyeIcon} label={form.is_active} onChange={inputChangeHandler} value={state.isActive as string} name="isActive" required>
                         <option>{form.select_status}</option>
                         <option value={1}>{active}</option>
                         <option value={0}>{inactive}</option>
                     </Select>
-                    <TextArea inputSize='sm' className="col-span-2" onChange={inputChangeHandler} value={state.body as string} name="body" required label={form.body} />
                 </div>
             </div>
 

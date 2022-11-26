@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { ReactNode, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { ReactNode, useCallback, useEffect, useState } from 'react'
 
 import ContentContext from '../app/contexts/content'
 import CountriesContext from '../app/contexts/countries'
@@ -37,14 +38,18 @@ export default function Wrapper({ children }: WrapperProps) {
   const [loaded, setLoaded] = useState(false)
   const [theme, setTheme] = useState<Theme | null>(Theme.LIGHT)
 
+  const router = useRouter()
+
   const dispatch = useAppDispatch()
   const { token, status } = useAppSelector(selectAuth)
 
-  const setLanguage = (language: LanguageType | null) => {
+  const setLanguage = useCallback((language: LanguageType | null) => {
     setJustLanguage(language)
+    console.log(router.locale);
+    
     if (language) localStorage.setItem('frontend_lang', language.abbr)
     else localStorage.removeItem('frontend_lang')
-  }
+  }, [router.locale])
 
   useEffect(() => {
     if (status === Status.IDLE) {
@@ -73,7 +78,7 @@ export default function Wrapper({ children }: WrapperProps) {
         setLanguages(languages)
         setLanguage(languages.find(language => language.abbr === 'fr')!)
       })
-  }, [languages])
+  }, [languages, setLanguage])
 
   useEffect(() => {
     if (content === null) getContent()

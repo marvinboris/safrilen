@@ -1,13 +1,13 @@
 import { Model, Schema } from "mongoose"
 import slugify from 'slugify'
 
-const directory = '/images/products/'
+const directory = '/images/publications/'
 
-export interface ProductInterface {
+export interface PublicationInterface {
     id?: string
-    name: string
+    title: string
     description: string
-    price: number
+    body: string
     photo?: string
     slug?: string
     isActive: boolean
@@ -15,8 +15,8 @@ export interface ProductInterface {
     updatedAt?: Date
 }
 
-export const ProductSchema = new Schema<ProductInterface, Model<ProductInterface>>({
-    name: {
+export const PublicationSchema = new Schema<PublicationInterface, Model<PublicationInterface>>({
+    title: {
         type: String,
         required: true
     },
@@ -24,8 +24,8 @@ export const ProductSchema = new Schema<ProductInterface, Model<ProductInterface
         type: String,
         required: true
     },
-    price: {
-        type: Number,
+    body: {
+        type: String,
         required: true
     },
     photo: {
@@ -44,9 +44,9 @@ export const ProductSchema = new Schema<ProductInterface, Model<ProductInterface
 }, { timestamps: true, toObject: { getters: true, virtuals: true } })
 
 // Virtuals
-ProductSchema.virtual('link').get(function () { return `/products/${this.slug}` })
+PublicationSchema.virtual('link').get(function () { return `/publications/${this.slug}` })
 
-ProductSchema.pre<ProductInterface>("save", function (next) {
-    this.slug = slugify(this.name, { lower: true });
+PublicationSchema.pre<PublicationInterface>("save", function (next) {
+    this.slug = slugify(this.title, { lower: true });
     next();
 });

@@ -4,6 +4,7 @@ import slugify from 'slugify'
 const directory = '/images/services/'
 
 export interface ServiceInterface {
+    id?: string
     title: string
     body: string
     photo?: string

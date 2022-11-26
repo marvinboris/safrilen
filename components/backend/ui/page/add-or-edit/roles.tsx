@@ -23,7 +23,7 @@ const initialState = {
 }
 
 export default function ManageAddOrEditRoles({ edit }: Props) {
-    const { status, data: backend, message } = useAppSelector(selectBackend)
+    const { data: backend } = useAppSelector(selectBackend)
 
     const { content } = useContentContext()
     const { cms: { backend: { pages: { roles: { form } } } } } = content!

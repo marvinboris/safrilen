@@ -4,9 +4,9 @@ export default interface ContentType {
     cms: {
         global: {
             app_name: string, company_name: string, company_logo: string, favicon: string
-            logo: { big?: string, dark?: string, default: string, light?: string },
+            logo: { big?: string, dark?: string, default: string, light?: string }
             contact: {
-                social_networks: { [key: string]: string },
+                social_networks: { [key: string]: string }
                 email: string,
                 phone: string,
                 map: string
@@ -22,13 +22,13 @@ export default interface ContentType {
             pages: {
                 user: { login: { title: string, sign_in: string, email_address: string, password: string } }
                 admin: {
-                    login: { sign_in_to: string, sign_in: string, admin_panel: string, email_address: string, password: string, sms: string, email: string, otp_method: string },
+                    login: { sign_in_to: string, sign_in: string, admin_panel: string, email_address: string, password: string, sms: string, email: string, otp_method: string }
                     verify: { enter: string, verification_code: string, continue: string, didnt_receive_code: string, resend: string }
                 }
             }
         }
         backend: {
-            header: { id: string, sign_out: string, no_message: string, no_notification: string, logout: string, close: string, sure_logout: string, you_have: string, messages: string, unread_message: string, unread_notification: string, unread_messages: string, unread_notifications: string, view_all_messages: string, view_all_notifications: string },
+            header: { id: string, sign_out: string, no_message: string, no_notification: string, logout: string, close: string, sure_logout: string, you_have: string, messages: string, unread_message: string, unread_notification: string, unread_messages: string, unread_notifications: string, view_all_messages: string, view_all_notifications: string }
             footer: { copyright: string, all_rights: string },
             sidebar: {
                 admin: string
@@ -40,9 +40,11 @@ export default interface ContentType {
                     users: { title: string, add: string, index: string }
                     roles: { title: string, add: string, index: string }
                     features: { title: string, add: string, index: string }
+                    subscribers: { title: string, add: string, index: string }
                     testimonials: { title: string, add: string, index: string }
                     services: { title: string, add: string, index: string }
                     products: { title: string, add: string, index: string }
+                    publications: { title: string, add: string, index: string }
                     images: { title: string, add: string, index: string }
                     cms: { title: string, global: string, general: string, auth: string, backend: string, frontend: string }
                     settings: { title: string, cms: string, language: string }
@@ -61,8 +63,10 @@ export default interface ContentType {
                 subjects: { not_found: string, created: string, updated: string, deleted: string },
                 roles: { not_found: string, created: string, updated: string, deleted: string },
                 features: { not_found: string, created: string, updated: string, deleted: string },
+                subscribers: { not_found: string, created: string, updated: string, deleted: string },
                 services: { not_found: string, created: string, updated: string, deleted: string },
                 products: { not_found: string, created: string, updated: string, deleted: string },
+                publications: { not_found: string, created: string, updated: string, deleted: string },
                 testimonials: { not_found: string, created: string, updated: string, deleted: string },
                 images: { not_found: string, created: string, updated: string, deleted: string },
                 notifications: { not_found: string }
@@ -100,6 +104,10 @@ export default interface ContentType {
                     title: string, add: string, edit: string, index: string
                     form: { name: string, prefix: string, created_at: string }
                 },
+                subscribers: {
+                    title: string, add: string, edit: string, index: string
+                    form: { first_name: string, email: string, created_at: string }
+                },
                 services: {
                     title: string, add: string, edit: string, index: string
                     form: { title: string, body: string, photo: string, service_photo: string, is_active: string, select_status: string, created_at: string }
@@ -107,6 +115,10 @@ export default interface ContentType {
                 products: {
                     title: string, add: string, edit: string, index: string
                     form: { name: string, description: string, price: string, photo: string, product_photo: string, is_active: string, select_status: string, created_at: string }
+                },
+                publications: {
+                    title: string, add: string, edit: string, index: string
+                    form: { title: string, description: string, body: string, photo: string, publication_photo: string, is_active: string, select_status: string, created_at: string }
                 },
                 notifications: {
                     title: string, show: string, index: string
@@ -130,7 +142,7 @@ export default interface ContentType {
             }
         }
         frontend: {
-            header: { menu: { home: string, about: string, services: string, products: string, contact: string, quote: string } },
+            header: { menu: { home: string, about: string, services: string, products: string, contact: string, quote: string } }
             footer: {
                 top: {
                     navigation: {
@@ -162,6 +174,7 @@ export default interface ContentType {
                         continue: string
                     }
                 }
+                solutions: string[]
             },
             messages: {
                 contact: { success: string, failure: string }
@@ -171,18 +184,20 @@ export default interface ContentType {
                 home: {
                     banner: { title: string, subtitle: string },
                     about: { head: string, title: string, description: string, services: string[], read_more: string },
-                    testimonials: { head: string, title: string, view_all: string },
                     services: { head: string, title: string, view_all: string },
-                    contact: { head: string, title: string, address: string }
+                    solutions: { head: string, title: string },
+                    testimonials: { head: string, title: string, view_all: string },
+                    publications: { head: string, title: string, view_all: string },
                 },
                 about: {
                     title: string, subtitle: string, description: string
                     about: {
-                        head: string, title: string, description: string,
+                        head: string, title: string, description: string
                         strengths: { title: string, items: string[] }, goal: { title: string, items: string[] }, follow: { title: string, body: string }
                     },
-                    services: { head: string, title: string, view_all: string },
+                    services: { head: string, title: string, view_all: string }
                     contact: { head: string, title: string, address: string }
+                    newsletter: { head: string, title: string, description: string, form: { first_name: string, email: string, submit: string } }
                 },
                 contact: {
                     title: string, subtitle: string, description: string
@@ -192,6 +207,11 @@ export default interface ContentType {
                 services: {
                     title: string, subtitle: string, description: string
                     services: { head: string, title: string }
+                    solutions: { head: string, title: string }
+                },
+                publications: {
+                    title: string, subtitle: string, description: string
+                    publications: { head: string, title: string }
                 },
                 products: {
                     title: string, subtitle: string, description: string

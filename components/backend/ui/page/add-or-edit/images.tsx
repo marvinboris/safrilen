@@ -2,10 +2,7 @@ import { WrenchIcon, PencilSquareIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
 import { ChangeEvent, useState } from "react"
 
-import { useAppSelector } from "../../../../../app/hooks"
 import ManagerResourceManageStateType from "../../../../../app/types/account/manager/add-or-edit/state"
-
-import { selectBackend } from "../../../../../features/backend/backendSlice"
 
 import * as utility from '../../utils'
 
@@ -20,8 +17,6 @@ const initialState = {
 }
 
 export default function ManageAddOrEditImages({ edit }: Props) {
-    const { message } = useAppSelector(selectBackend)
-
     const [state, setState] = useState<ManagerResourceManageStateType>({ ...initialState })
 
     const inputChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => utility.add.component.inputChangeHandler(setState)(e)
