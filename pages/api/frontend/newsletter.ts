@@ -15,7 +15,7 @@ export default async function handler(
         const cms = getCms()
         const { firstName, email } = req.body
 
-        Subscriber.create({ firstName, email })
+        await Subscriber.create({ firstName, email })
 
         await sendMail({
             to: email,
