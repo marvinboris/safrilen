@@ -33,7 +33,7 @@ const ManagerFeaturesPage: NextPageWithLayout = () => {
     }));
 
     const fields = [
-        { name: form.first_name, key: 'first_name' },
+        { name: form.first_name, key: 'firstName' },
         { name: form.email, key: 'email' },
         { name: form.created_at, key: 'created_at' },
         { name: action, key: 'action', fixed: true }

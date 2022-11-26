@@ -1,4 +1,4 @@
-import { AdjustmentsHorizontalIcon, ChatBubbleOvalLeftEllipsisIcon, WrenchIcon, CogIcon, ComputerDesktopIcon, PhotoIcon, TagIcon, UserGroupIcon, UserPlusIcon, Cog8ToothIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
+import { AdjustmentsHorizontalIcon, ChatBubbleOvalLeftEllipsisIcon, WrenchIcon, CogIcon, ComputerDesktopIcon, PhotoIcon, TagIcon, UserGroupIcon, UserPlusIcon, Cog8ToothIcon, ShoppingBagIcon, UserIcon, ChatBubbleLeftEllipsisIcon } from "@heroicons/react/24/outline";
 import { Transition } from "@headlessui/react";
 import Link from "next/link";
 import { Fragment } from "react";
@@ -46,7 +46,9 @@ export default function SideDrawer() {
                                         features: CogIcon,
                                         images: PhotoIcon,
                                         services: WrenchIcon,
+                                        subscribers: UserIcon,
                                         products: ShoppingBagIcon,
+                                        publications: ChatBubbleLeftEllipsisIcon,
                                         testimonials: ChatBubbleOvalLeftEllipsisIcon,
                                     }[resource as ResourceType]} href={`/${role}/${prefix}`}>{cms.sidebar.menu[resource as ResourceType].title}</NavItem>
                                 })}

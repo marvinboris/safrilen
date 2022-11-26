@@ -1,6 +1,6 @@
 import { Model, Schema } from "mongoose"
 
-export interface FeatureInterface {
+export interface SubscriberInterface {
     id?: string
     firstName: string
     email: string
@@ -8,7 +8,7 @@ export interface FeatureInterface {
     updatedAt?: Date
 }
 
-export const FeatureSchema = new Schema<FeatureInterface, Model<FeatureInterface>>({
+export const SubscriberSchema = new Schema<SubscriberInterface, Model<SubscriberInterface>>({
     firstName: {
         type: String,
         required: true

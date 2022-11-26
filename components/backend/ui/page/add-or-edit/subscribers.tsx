@@ -13,8 +13,8 @@ import ManagerAddOrEdit from "."
 type Props = { edit?: boolean }
 
 const initialState = {
-    name: '',
-    prefix: '',
+    firstName: '',
+    email: '',
 
     add: false,
 }
@@ -31,7 +31,7 @@ export default function ManageAddOrEditSubscribers({ edit }: Props) {
         <div className='grid md:grid-cols-3'>
             <div className="md:col-span-2">
                 <div className="flex-1 grid gap-y-2 gap-x-4 grid-cols-1 md:grid-cols-2 overflow-auto">
-                    <Input inputSize='sm' type="text" icon={UserIcon} onChange={inputChangeHandler} value={state.first_name as string} name="first_name" required label={form.first_name} />
+                    <Input inputSize='sm' type="text" icon={UserIcon} onChange={inputChangeHandler} value={state.firstName as string} name="firstName" required label={form.first_name} />
                     <Input inputSize="sm" type="email" icon={EnvelopeIcon} onChange={inputChangeHandler} value={state.email as string} name="email" required label={form.email} />
                 </div>
             </div>
