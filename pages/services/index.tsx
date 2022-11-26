@@ -23,7 +23,7 @@ const ServicesPage: NextPageWithLayout = () => {
     const solutionsContent = solutions.map((solution, i) => {
         const Icon = [LightBulbIcon, PresentationChartLineIcon, BoltIcon, ShieldCheckIcon, WrenchScrewdriverIcon][i]
 
-        return <div key={`solution-${solution}`} className='flex flex-col flex-none w-1/3 px-2 md:px-3 items-center text-center space-y-4'>
+        return <div key={`solution-${solution}`} className='flex flex-col flex-none w-1/2 md:w-1/3 px-2 md:px-3 items-center text-center space-y-4 pb-4 md:pb-6'>
             <div><Icon className='w-16 text-yellow' /></div>
             <div className='font-medium text-secondary-200'>{solution}</div>
         </div>
