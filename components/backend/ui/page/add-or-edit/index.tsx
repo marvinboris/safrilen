@@ -1,6 +1,6 @@
 import { ArrowDownOnSquareIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router'
-import { ComponentProps, ReactNode, useEffect, useMemo, useState } from 'react'
+import { ComponentProps, Dispatch, ReactNode, SetStateAction, useEffect, useMemo, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from '../../../../../app/hooks'
 import { useContentContext } from '../../../../../app/contexts/content'
@@ -26,7 +26,7 @@ type Props = {
     children?: ReactNode
     staticChild?: ReactNode
     state: ManagerResourceManageStateType
-    setState: (state: ManagerResourceManageStateType | ((state: ManagerResourceManageStateType) => ManagerResourceManageStateType)) => void
+    setState: Dispatch<SetStateAction<ManagerResourceManageStateType>>
 }
 
 const ManagerAddOrEdit = ({ initialState, resource, singular, edit, icon, children, staticChild, state, setState }: Props) => {
@@ -72,7 +72,7 @@ const ManagerAddOrEdit = ({ initialState, resource, singular, edit, icon, childr
 
     useEffect(() => {
         if (!state._id) utility.add.lifecycle.componentDidUpdate(resource, singular)(props, state, setState, () => setState({ ...initialState }))
-    }, [backend, initialState, message, props, resource, setState, singular, state, status])
+    }, [initialState, message, props, resource, setState, singular, state, status])
 
     const _content = <div>
         {children}

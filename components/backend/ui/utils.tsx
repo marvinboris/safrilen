@@ -1,5 +1,5 @@
 import { NextRouter, useRouter } from 'next/router';
-import React, { ChangeEvent, ComponentProps, FormEvent, ReactNode } from 'react';
+import React, { ChangeEvent, ComponentProps, Dispatch, FormEvent, ReactNode, SetStateAction } from 'react';
 
 import { classNames } from '../../../app/helpers/utils';
 import { useAppSelector } from '../../../app/hooks';
@@ -52,7 +52,7 @@ type PropsType = {
     reset: () => void
 }
 
-type SetStateType = (state: ManagerResourceManageStateType | ((state: ManagerResourceManageStateType) => ManagerResourceManageStateType), cb?: () => void) => void
+type SetStateType = Dispatch<SetStateAction<ManagerResourceManageStateType>>
 
 type AddRenderProps = {
     className?: string
@@ -86,15 +86,18 @@ const Redirection = ({ props, resource }: { props: PropsType, resource: Resource
     if (role === 'user') {
         const feature = (data as ApiAccountUserType).role.features.find(f => f.prefix === resource.split('_').join('-'));
         if (!(feature && feature.access.includes(props.edit ? 'u' : 'c'))) router.push('/user/dashboard')
-        return <></>;
+        return null;
     }
 
-    return <></>;
+    return null;
 };
 
 export const add = {
     component: {
-        saveAddHandler: (setState: SetStateType, props: PropsType) => () => setState((state) => ({ ...state, add: true }), () => props.post!(document.querySelector('form')!)),
+        saveAddHandler: (setState: SetStateType, props: PropsType) => () => {
+            setState((state) => ({ ...state, add: true }))
+            props.post!(document.querySelector('form')!)
+        },
         inputChangeHandler: (setState: SetStateType) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
             e.persist()
             const { type, name, value } = e.target;
@@ -118,7 +121,7 @@ export const add = {
                     props.history?.push({
                         pathname,
                         query: { ...props.backend.message }
-                    }, pathname).then(() => props.reset());
+                    }, pathname);
                 }
             }
             if (props.backend.data && props.backend.data[singular] || (props.edit && props.backend.message && props.backend.message.type === 'success')) {

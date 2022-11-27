@@ -119,5 +119,5 @@ export default function Wrapper({ children }: WrapperProps) {
         </ContentContext.Provider>
       </CountriesContext.Provider>
     </LanguageContext.Provider>
-  </ThemeContext.Provider>) : <></>
+  </ThemeContext.Provider>) : null
 }

@@ -37,7 +37,7 @@ export default function Layout({ children }: LayoutProps) {
                 <Footer />
             </div>
         </div>
-    </SideDrawerContext.Provider> : <></>
+    </SideDrawerContext.Provider> : null
 }
 
 export interface PageParams {

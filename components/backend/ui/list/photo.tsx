@@ -18,5 +18,5 @@ export default function Photo({ photo, see, title }: PhotoProps) {
                 <Image width={1920} height={1920} src={photo} className="w-full" alt={title} />
             </View>
         </span>
-    </div> : <></>;
+    </div> : null;
 }
