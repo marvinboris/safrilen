@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse, PageConfig } from "next";
 
 import { data, resource, resourceConfig } from '.'
 
@@ -41,5 +41,11 @@ export default async function handler(
         else methodNotAllowed(req, res)
     } catch (error) {
         handleError(res, error)
+    }
+}
+
+export const config: PageConfig = {
+    api: {
+        bodyParser: false,
     }
 }

@@ -40,6 +40,7 @@ const ManagePublicationsPage: NextPageWithLayout = () => {
         { name: form.title, key: 'title' },
         { name: form.description, key: 'description' },
         { name: form.body, key: 'body' },
+        { name: form.is_active, key: 'isActive' },
         { name: form.photo, key: 'photo' },
         { name: action, key: 'action', fixed: true }
     ]

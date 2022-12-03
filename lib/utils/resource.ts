@@ -31,7 +31,8 @@ const validate = async (fields: string[], _fields: formidable.Fields, config?: S
                         rule === 'maxLength' ? `doit contenir au plus ${rules.maxLength} caractères` :
                             rule === 'isEmail' ? 'doit être une adresse mail valide' :
                                 rule === 'isNumeric' ? 'doit être un nombre valide' :
-                                    'est invalide'}.`)
+                                    rule === 'confirm' ? "est différent de l'original" :
+                                        'est invalide'}.`)
             valid = validity && valid
         }
 

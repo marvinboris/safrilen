@@ -77,12 +77,13 @@ const HomePage: NextPageWithLayout<{ home: HomeDataType }> = ({ home }) => {
     <Head link='/' title={app_name} description={cms.about.description} />
     <main>
       <header className='py-40 lg:py-52 relative flex flex-col items-center justify-center text-center text-white z-0'>
-        <div className='absolute inset-0 -z-20'>
-          <Carousel
+        <div className='absolute inset-0 -z-20 after:absolute after:inset-0 after:bg-primary/30'>
+          {/* <Carousel
             leftControl={width !== undefined && width > 768 ? undefined : <></>}
             rightControl={width !== undefined && width > 768 ? undefined : <></>}>
             {carouselContent}
-          </Carousel>
+          </Carousel> */}
+          <NextImage fill src='/images/frontend/industrie.jpg' alt='Banner BG' className='image-cover' />
         </div>
 
         <div className="container">

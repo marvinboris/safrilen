@@ -4,4 +4,5 @@ export default interface ValidationType {
     maxLength?: number
     isEmail?: boolean
     isNumeric?: boolean
+    confirm?: string
 }

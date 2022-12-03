@@ -40,7 +40,7 @@ export default function Toolbar() {
     ]
 
     return (
-        <Popover className="sticky w-full top-0 z-40 bg-white/80 dark:bg-secondary-900 backdrop-filter backdrop-blur">
+        <Popover className="sticky w-full top-0 z-40 bg-primary text-white">
             {({ close }) => <>
                 <div className="container">
                     <div className="flex items-center py-[12px] lg:py-[10px]">
@@ -69,8 +69,8 @@ export default function Toolbar() {
                                 <LanguageSelect />
                             </div>
 
-                            <div className="lg:hidden ml-auto">
-                                <Popover.Button className="flex h-10 items-center justify-center rounded-md p-2 text-primary bg-primary/10 -m-2 focus:outline-none">
+                            <div className="lg:hidden pl-3 lg:pl-0 ml-auto">
+                                <Popover.Button className="flex h-10 items-center justify-center rounded-md p-2 text-white bg-white/10 -m-2 focus:outline-none">
                                     <span className="sr-only">Ouvrir le menu</span>
                                     <Bars3BottomRightIcon className="w-6" aria-hidden="true" />
                                 </Popover.Button>
@@ -79,9 +79,9 @@ export default function Toolbar() {
                     </div>
                 </div>
 
-                <Popover.Overlay className="md:hidden fixed top-0 inset-x-0 h-screen z-40 bg-black/20 dark:bg-secondary-900/80 backdrop-filter backdrop-blur-sm" />
+                <Popover.Overlay className="lg:hidden fixed top-0 inset-x-0 h-screen z-40 bg-black/20 dark:bg-secondary-900/80 backdrop-filter backdrop-blur-sm" />
                 <Transition as={Fragment} enter="duration-200 ease-out" enterFrom="opacity-0" enterTo="opacity-100" leave="duration-200 ease-in" leaveFrom="opacity-100" leaveTo="opacity-0">
-                    <Popover.Panel focus className="fixed inset-x-0 top-0 z-50 md:hidden">
+                    <Popover.Panel focus className="fixed inset-x-0 top-0 z-50 lg:hidden">
                         <div className="absolute top-0 left-0 w-full pt-4">
                             <div className="container flex justify-end">
                                 <Popover.Button className="flex h-10 items-center justify-center rounded-md p-2 -mr-2 focus:outline-none">

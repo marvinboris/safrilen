@@ -68,7 +68,7 @@ interface SectionBlockProps {
 const SectionBlock = ({ title, head, children, className }: SectionBlockProps) => <div className={className}>
     <div className="font-semibold text-yellow text-sm sm:text-base">{head}</div>
 
-    <h3 className='text-primary text-lg sm:text-xl font-extrabold tracking-tight'>{title}</h3>
+    <h3 className='text-white text-lg sm:text-xl font-extrabold tracking-tight'>{title}</h3>
 
     <div className='mt-3'>{children}</div>
 </div>
@@ -77,7 +77,7 @@ export default function Footer() {
     const { content } = useContentContext()
     const { services, cms: { global: { app_name, company_name, contact: { email, phone, social_networks } }, frontend: { footer: { top, bottom } } } } = content!
 
-    return <footer className='relative before:bg-grid-primary/[0.05] before:absolute before:-z-20 before:inset-0 after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-t after:from-white after:to-transparent'>
+    return <footer className='relative bg-primary text-white'>
         <div className="py-8">
             <div className="container grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 <SectionBlock head={top.navigation.head} title={top.navigation.title}>
@@ -93,7 +93,7 @@ export default function Footer() {
                         <div className="flex">
                             <div>
                                 <div className="w-7">
-                                    <MapPinIcon className='text-primary w-5' />
+                                    <MapPinIcon className='text-white w-5' />
                                 </div>
                             </div>
 
@@ -105,7 +105,7 @@ export default function Footer() {
                         <div className="flex">
                             <div>
                                 <div className="w-7">
-                                    <EnvelopeIcon className='text-primary w-5' />
+                                    <EnvelopeIcon className='text-white w-5' />
                                 </div>
                             </div>
 
@@ -115,7 +115,7 @@ export default function Footer() {
                         <div className="flex">
                             <div>
                                 <div className="w-7">
-                                    <PhoneIcon className='text-primary w-5' />
+                                    <PhoneIcon className='text-white w-5' />
                                 </div>
                             </div>
 
@@ -126,10 +126,10 @@ export default function Footer() {
             </div>
         </div>
 
-        <div className="py-8">
+        <div className="py-8 bg-yellow">
             <div className="container space-y-3 lg:space-y-0 lg:flex items-center">
                 <div className='flex items-center justify-center space-x-3'>
-                    <span>{new Date().getFullYear()} <span className='font-bold text-yellow'>{app_name}</span>. {bottom.all_rights} <span className='font-bold text-primary'>{company_name}</span>.</span>
+                    <span>&copy; {new Date().getFullYear()} <span className='font-bold'>{app_name}</span>. {bottom.all_rights} <span className='font-bold text-primary'>{company_name}</span>.</span>
                 </div>
             </div>
         </div>

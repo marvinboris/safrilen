@@ -50,6 +50,8 @@ export const checkValidity = (value = '', rules: ValidationType) => {
 
     if (rules.required) validation.required = value.trim() !== '';
 
+    if (rules.confirm) validation.confirm = value === rules.confirm;
+
     if (rules.minLength) validation.minLength = value.length >= rules.minLength;
 
     if (rules.maxLength) validation.maxLength = value.length <= rules.maxLength;

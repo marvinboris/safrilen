@@ -77,38 +77,45 @@ const AboutPage: NextPageWithLayout = () => {
 
             <SectionBlock id='about' className="flex items-center">
                 <div className='container'>
+                    <SectionTitle centered head={cms.about.head} title={cms.about.title} />
+
                     <div className='grid gap-6 md:grid-cols-3'>
                         <div>
-                            <div className='relative md:px-8 md:pb-9'>
-                                <div className="aspect-square relative">
-                                    <Image fill src="/images/frontend/Nigerian-engineers.jpg" alt="Banner" className="absolute rounded-[30px] top-0 z-20 image-cover" />
-                                </div>
-
-                                <div className="absolute z-0 bottom-0 left-0 rounded-[38.0488px] bg-orange/10 shadow-lg shadow-orange/10 ratio-4by3 w-2/5" />
-                                <div className="absolute z-0 top-0 right-0 rounded-[30px] bg-primary/10 shadow-lg shadow-primary/10 ratio-4by3 w-3/5" />
+                            <div className='relative'>
+                                <Image width={500} height={500} src="/images/frontend/15.jpg" alt="Banner" className="rounded-[30px] top-0 z-20" />
+                                {/* <div className="aspect-square relative">
+                                </div> */}
                             </div>
                         </div>
 
                         <div className='md:col-span-2'>
-                            <SectionTitle head={cms.about.head} title={cms.about.title} />
+                            <div className='space-y-6'>
+                                <div>{cms.about.description}</div>
 
-                            <div className='grid gap-6 md:grid-cols-2'>
-                                <div className='space-y-6'>
-                                    <div>{cms.about.description}</div>
+                                <Article title={cms.about.goal.title}>
+                                    <ul>{cms.about.goal.items.map((goal, i) => <Li key={`about-about-goal-${i}`}>{goal}</Li>)}</ul>
+                                </Article>
 
-                                    <Article title={cms.about.strengths.title}>
-                                        <ul>{cms.about.strengths.items.map((strength, i) => <Li key={`about-about-strength-${i}`}>{strength}</Li>)}</ul>
-                                    </Article>
-                                </div>
+                                <Article title={cms.about.follow.title}>
+                                    {cms.about.follow.body}
+                                </Article>
+                            </div>
+                        </div>
 
-                                <div className='space-y-6'>
-                                    <Article title={cms.about.goal.title}>
-                                        <ul>{cms.about.goal.items.map((goal, i) => <Li key={`about-about-goal-${i}`}>{goal}</Li>)}</ul>
-                                    </Article>
+                        <div className='md:col-span-2'>
+                            <div className='space-y-6'>
+                                <div>{cms.about.description}</div>
 
-                                    <Article title={cms.about.follow.title}>
-                                        {cms.about.follow.body}
-                                    </Article>
+                                <Article title={cms.about.strengths.title}>
+                                    <ul>{cms.about.strengths.items.map((strength, i) => <Li key={`about-about-strength-${i}`}>{strength}</Li>)}</ul>
+                                </Article>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className='relative'>
+                                <div className="aspect-video relative">
+                                    <Image fill src="/images/frontend/2015_08_20_ValeursEntreprise.png" alt="Banner" className="absolute rounded-[30px] top-0 z-20 image-cover" />
                                 </div>
                             </div>
                         </div>

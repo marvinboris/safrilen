@@ -11,7 +11,7 @@ export default function LanguageSelect() {
     const selected = language!
 
     return language === null ? null : (
-        <div className="w-full">
+        <div className="w-full text-secondary-700">
             <Listbox value={selected} onChange={setLanguage}>
                 <div className="relative">
                     <Listbox.Button className="relative w-full cursor-default text-left sm:text-sm">
