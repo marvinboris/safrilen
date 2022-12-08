@@ -44,6 +44,7 @@ app.prepare()
 
         server.use(flash());
 
+        mongoose.set('strictQuery', true);
         mongoose.connect(process.env.MONGODB_URI)
             .then(() => {
                 server.all('*', (req, res) => handle(req, res))
